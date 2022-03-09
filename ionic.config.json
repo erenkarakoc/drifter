@@ -1,0 +1,7 @@
+{
+  "name": "drifter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
