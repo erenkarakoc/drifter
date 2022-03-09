@@ -1,0 +1,7 @@
+#triggerEmrullah {
+  margin: 40px 0 0 40px;
+  transition: all 0.15s ease-out;
+}
+#triggerEmrullah:hover {
+  transform: translateY(-4px);
+}
