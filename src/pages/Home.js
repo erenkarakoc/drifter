@@ -9,7 +9,7 @@ import ExploreContainer from "../components/ExploreContainer"
 import Emrullah from "../components/Emrullah"
 import "./Home.css"
 
-const Home: React.FC = () => {
+const Home = () => {
   return (
     <IonPage>
       <IonHeader>
