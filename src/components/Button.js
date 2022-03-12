@@ -55,13 +55,13 @@ export default class Button extends Component {
         transition: all 0.1s ease-out;
 
         &:hover {
-          background-color: ${color ? color : "var(--dt-blue)"};
+          background-color: ${color ? color : "var(--dt-blue)"} !important;
           border-color: ${borderColor
             ? borderColor
             : color
             ? color
-            : "var(--dt-blue)"};
-          color: ${textColor ? textColor : "#000"};
+            : "var(--dt-blue)"} !important;
+          color: ${textColor ? textColor : "#000"} !important;
         }
         &:active {
           background-color: ${activeColor ? activeColor : "var(--dt-blue-3)"};
@@ -82,13 +82,13 @@ export default class Button extends Component {
         transition: all 0.1s ease-out;
 
         &:hover {
-          background-color: ${color ? color : "var(--dt-blue)"};
+          background-color: ${color ? color : "var(--dt-blue)"} !important;
           border-color: ${borderColor
             ? borderColor
             : color
             ? color
-            : "var(--dt-blue)"};
-          color: ${textColor ? textColor : "#000"};
+            : "var(--dt-blue)"} !important;
+          color: ${textColor ? textColor : "#000"} !important;
         }
         &:active {
           background-color: ${activeColor ? activeColor : "var(--dt-blue-3)"};
