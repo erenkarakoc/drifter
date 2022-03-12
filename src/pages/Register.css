@@ -32,7 +32,7 @@
   height: 44px;
   width: 50%;
 }
-.Register .RegisterWith ion-button button::part(native) {
+.Register .RegisterWith ion-button::part(native) {
   font-size: 14px;
 }
 .Register .RegisterWith ion-button:not(:first-of-type) {
@@ -40,6 +40,10 @@
 }
 .Register .RegisterWith ion-button svg {
   flex-shrink: 0;
+}
+
+.Register .RegisterApple {
+  min-width: 174px;
 }
 
 .Register .orRegisterWith {

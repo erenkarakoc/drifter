@@ -1,6 +1,6 @@
 import "./Register.css"
 
-import { IonContent, useIonRouter, isPlatform } from "@ionic/react"
+import { IonContent, isPlatform } from "@ionic/react"
 
 import Input from "../components/Input"
 import Button from "../components/Button"
@@ -32,8 +32,9 @@ const Register = () => {
               icon="apple"
               iconFill="#000"
               iconHeight={22}
-              iconWidth={17}
+              iconWidth={18}
               text="Sign in with Apple"
+              className="RegisterApple"
             />
           ) : (
             <Button
@@ -94,6 +95,8 @@ const Register = () => {
           />
         </form>
       </div>
+
+      <Button theme="link" routerLink="/materials" text="Materials" />
     </IonContent>
   )
 }

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 12px 90px;
+  padding: 12px 0;
   background-color: var(--ion-color-step-75);
   color: #fff;
 }
@@ -11,8 +11,20 @@
   color: var(--ion-color-step-200);
 }
 
-.Materials > div {
-  margin: 0 0 70px;
+.MaterialsWrap {
+  max-width: 320px;
+  margin: 0 auto !important;
+}
+
+.MaterialsWrap > div {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 0 auto 70px;
+}
+
+.MaterialsPages .theme-button-link:not(:first-of-type) {
+  margin-left: 12px;
 }
 
 .MaterialsLogos {
@@ -30,6 +42,11 @@
   height: fit-content;
   width: 33.33333%;
   margin: 14px;
+}
+
+.MaterialsIcons,
+.MaterialsPages {
+  flex-direction: row !important;
 }
 
 .MaterialsButtons ion-button {

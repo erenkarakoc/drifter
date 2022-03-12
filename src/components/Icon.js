@@ -5,8 +5,8 @@ const Icon = ({ name, fill, size, height, width }) => (
   <svg
     className={`icon icon-${name}`}
     fill={fill}
-    height={size ? size : height}
-    width={size ? size : width}
+    height={height ? height : size ? size : 24}
+    width={width ? width : size ? size : 24}
   >
     <use xlinkHref={`${Icons}#icon-${name}`} />
   </svg>

@@ -1,6 +1,12 @@
 // React & Ionic
 import { Redirect, Route } from "react-router-dom"
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react"
+import {
+  IonApp,
+  IonRouterOutlet,
+  setupIonicReact,
+  IonToolbar,
+  IonButton
+} from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
 
 // Pages
@@ -52,7 +58,7 @@ const App = () => {
             <Materials />
           </Route>
           <Route exact path="/">
-            <Redirect to="/materials" />
+            <Redirect to="/login" />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
