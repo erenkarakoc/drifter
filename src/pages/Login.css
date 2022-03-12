@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   min-height: 100%;
 }
 
@@ -26,18 +27,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 320px;
   margin: 56px auto 0;
 }
 
-.LoginForm ion-input {
+.LoginForm .LoginInput:not(:first-of-type) {
   margin-top: 14px;
   width: 100%;
 }
 .LoginForm .LoginButton {
-  margin-top: 30px;
+  margin: 30px 0 0;
 }
 .LoginForm .LoginForgotPassword {
+  margin: 12px 0 0;
   align-self: flex-end;
 }
 
@@ -46,4 +48,29 @@
   margin: 32px auto 0;
   color: #fff;
   font-weight: 400;
+}
+
+.Login .RegisterNow {
+  user-select: none;
+  display: flex;
+  margin: 26px auto 0;
+  color: #fff;
+  font-weight: 400;
+}
+.Login .RegisterNow ion-button {
+  margin-left: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: underline;
+}
+
+.Login .LoginWith {
+  margin-top: 20px;
+}
+.Login .LoginWith ion-button:not(:first-of-type) {
+  margin-left: 25px;
+}
+.Login .LoginWith ion-button svg {
+  flex-shrink: 0;
 }

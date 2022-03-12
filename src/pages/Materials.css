@@ -18,7 +18,7 @@
 .MaterialsLogos {
   display: flex;
   flex-wrap: wrap;
-  max-width: 300px;
+  max-width: 320px;
 }
 .MaterialsLogos div {
   display: flex;

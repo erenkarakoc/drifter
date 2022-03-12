@@ -32,10 +32,10 @@ const Materials = () => {
         <h1>Pages</h1>
 
         <div>
-          <Button routerLink="/" type="link" text="App" />
-          <Button routerLink="/Home" type="link" text="Home" />
-          <Button routerLink="/login" type="link" text="Login" />
-          <Button routerLink="/register" type="link" text="Register" />
+          <Button routerLink="/" theme="link" text="App" />
+          <Button routerLink="/Home" theme="link" text="Home" />
+          <Button routerLink="/login" theme="link" text="Login" />
+          <Button routerLink="/register" theme="link" text="Register" />
         </div>
 
         <h1>Logos</h1>
@@ -49,7 +49,7 @@ const Materials = () => {
           </div>
           <p>Horizontal</p>
           <div>
-            <Logo type="LogoLight" />
+            <Logo />
             <Logo type="LogoDark" />
           </div>
           <div>
@@ -93,10 +93,10 @@ const Materials = () => {
         <h1>Icons</h1>
 
         <div className="MaterialsIcons">
-          <Icon name="phone" fill="#ffffff" height={35} width={35} />
-          <Icon name="user" fill="#ffffff" height={35} width={35} />
-          <Icon name="envelope" fill="#ffffff" height={35} width={54} />
-          <Icon name="lock" fill="#ffffff" height={35} width={35} />
+          <Icon name="phone" fill="#ffffff" size={35} />
+          <Icon name="user" fill="#ffffff" size={35} />
+          <Icon name="envelope" fill="#ffffff" height={35} width={40} />
+          <Icon name="lock" fill="#ffffff" size={35} />
         </div>
 
         <h1>Buttons</h1>
@@ -154,7 +154,23 @@ const Materials = () => {
         <h1>Inputs</h1>
 
         <div className="MaterialsInputs">
-          <Input type="password" />
+          <Input placeholder="Input"></Input>
+          <Input
+            className="ion-margin-top icon-left"
+            borderColor="var(--dt-blue)"
+            placeholder="Input Secondary"
+            icon="google"
+          ></Input>
+          <Input
+            className="rounded ion-margin-top"
+            placeholder="Input Rounded"
+          ></Input>
+          <Input
+            className="rounded ion-margin-top"
+            placeholder="Input with Icon"
+            type="phone"
+            icon="phone"
+          ></Input>
         </div>
       </div>
 

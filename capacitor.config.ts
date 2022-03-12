@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'drifter.v1',
   appName: 'drifter',
   webDir: 'build',
   bundledWebRuntime: false

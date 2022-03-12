@@ -6,23 +6,32 @@ const Button = ({
   theme,
   text,
   icon,
+  iconFill,
+  iconSize,
+  iconHeight,
+  iconWidth,
   className,
   color,
+  textColor,
   borderColor,
-  hoverColor,
   activeColor,
   activeText,
   textTransform,
   ...buttonProps
 }) => {
   const DTButton = styled(IonButton)`
-    height: ${theme === "fab" ? "50px" : theme === "link" ? "18px" : "60px"};
+    height: ${theme === "fab" ? "50px" : theme === "link" ? "unset" : "60px"};
     width: ${theme === "fab" ? "50px" : "100%"};
-    max-width: 300px;
+    max-width: 320px;
     text-transform: ${textTransform ? textTransform : "unset"};
     letter-spacing: unset;
 
+    ${theme === "link"
+      ? "display: inline-block; margin: 0; margin-inline: 0;"
+      : ""}
+
     &::part(native) {
+      background-color: ${color ? color : "var(--dt-blue)"};
       border-radius: ${theme === "fab" ? "50%" : "unset"};
       box-shadow: unset;
     }
@@ -33,6 +42,7 @@ const Button = ({
       background-color: ${color ? color : "var(--dt-blue)"};
       border: 1px solid
         ${borderColor ? borderColor : color ? color : "var(--dt-blue)"};
+      color: ${textColor ? textColor : "#000"};
       font-family: "Manrope", "sans-serif";
       font-size: 18px;
       font-weight: 600;
@@ -50,6 +60,7 @@ const Button = ({
       background-color: ${color ? color : "var(--dt-blue)"};
       border: 1px solid
         ${borderColor ? borderColor : color ? color : "var(--dt-blue)"};
+      color: ${textColor ? textColor : "#000"};
       font-family: "Manrope", "sans-serif";
       font-size: 18px;
       font-weight: 600;
@@ -65,6 +76,7 @@ const Button = ({
     .theme-button-text&::part(native) {
       user-select: none;
       background-color: ${color ? color : "transparent"};
+      color: ${textColor ? textColor : "#000"};
       border: none;
       border-radius: 15px;
       font-family: "Manrope", "sans-serif";
@@ -77,22 +89,28 @@ const Button = ({
     .theme-button-link&::part(native) {
       padding: 0;
       background-color: unset;
-      color: ${color ? color : "#ffffff"};
+      color: ${textColor ? textColor : "#ffffff"};
       transition: all 0.1s ease-out;
+      line-height: 1.2;
       --ripple-color: transparent;
 
       &:hover {
         opacity: 0.9;
         background-color: unset;
-        color: ${color ? color : "#ffffff"};
+        color: ${textColor ? textColor : "#ffffff"};
       }
       &:active {
         background-color: unset;
-        color: ${activeColor ? activeColor : "#fff"};
+        color: ${activeText ? activeText : "#ffffff"};
       }
     }
     .theme-button-link&::part(native)::after {
       content: none;
+    }
+
+    & svg,
+    & img {
+      margin-right: 10px;
     }
   `
 
@@ -103,8 +121,18 @@ const Button = ({
       }`}
       {...buttonProps}
     >
+      {icon ? (
+        <Icon
+          name={icon}
+          fill={iconFill ? iconFill : "#a2a2a2"}
+          height={iconHeight ? iconHeight : ""}
+          width={iconWidth ? iconWidth : ""}
+          size={iconSize ? iconSize : ""}
+        />
+      ) : (
+        ""
+      )}
       {text}
-      {icon ? <Icon name={icon} fill="#a2a2a2" height={20} width={40} /> : ""}
     </DTButton>
   )
 }

@@ -3,18 +3,28 @@ import { IonInput } from "@ionic/react"
 import styled from "styled-components"
 import Icon from "./Icon"
 
-const Input = ({ className, borderColor, icon, type, ...inputProps }) => {
+const Input = ({
+  className,
+  borderColor,
+  icon,
+  type,
+  theme,
+  ...inputProps
+}) => {
   const DTInput = styled(IonInput)`
     flex-shrink: 0;
     flex-grow: 0;
-    max-width: 300px;
+    max-width: 320px;
 
     .native-input {
       position: relative;
-      height: 50px;
-      padding: 0 22px;
+      height: ${className && className.includes("rounded") ? "50px" : "60px"};
+      width: 100%;
+      padding: 0 62px 0 22px;
       border: 2px solid ${borderColor ? borderColor : "transparent"};
-      border-radius: ${className.includes("rounded") ? "30px" : "15px"};
+      border-radius: ${className && className.includes("rounded")
+        ? "30px"
+        : "15px"};
       background-color: #fff;
       color: #000;
       font-size: 16px;
@@ -34,6 +44,14 @@ const Input = ({ className, borderColor, icon, type, ...inputProps }) => {
     }
     &.has-value .icon-${icon} {
       fill: #666;
+    }
+
+    &.icon-left .native-input {
+      padding: 0 22px 0 50px;
+    }
+    &.icon-left .icon-${icon} {
+      left: 8px;
+      right: unset;
     }
   `
 

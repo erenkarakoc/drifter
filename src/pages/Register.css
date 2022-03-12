@@ -1,0 +1,103 @@
+.Register::part(scroll) {
+  padding: var(--dt-page-padding);
+}
+.Register::part(background) {
+  background-color: var(--dt-primary);
+}
+
+.RegisterWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.Register .Logo {
+  width: fit-content;
+  margin: 0 auto;
+}
+.Register .Logo svg {
+  height: 160px;
+  width: 94px;
+}
+
+.Register .RegisterWith {
+  display: flex;
+  max-width: 320px;
+  width: 100%;
+  margin: 20px auto 0;
+}
+.Register .RegisterWith ion-button:not(:first-of-type) {
+  margin-left: 10px;
+}
+.Register .RegisterWith ion-button svg {
+  flex-shrink: 0;
+}
+
+.Register .orRegisterWith {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+  margin: 32px auto 0;
+  color: #b9c0cf;
+  font-weight: 400;
+  text-align: center;
+}
+.Register .orRegisterWith::before {
+  content: "";
+  display: block;
+  position: relative;
+  height: 1px;
+  width: 100%;
+  margin-right: 16px;
+  background-color: #808297;
+}
+.Register .orRegisterWith::after {
+  content: "";
+  display: block;
+  position: relative;
+  height: 1px;
+  width: 100%;
+  margin-left: 16px;
+  background-color: #808297;
+}
+
+.RegisterForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  margin: 20px auto 0;
+}
+
+.RegisterForm .RegisterInput:not(:first-of-type) {
+  margin-top: 14px;
+  width: 100%;
+}
+.RegisterForm .RegisterButton {
+  margin: 30px 0 0;
+}
+.RegisterForm .RegisterForgotPassword {
+  margin: 12px 0 0;
+  align-self: flex-end;
+}
+
+.Register .haveAnAccount {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  margin: 26px auto 0;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1;
+}
+.Register .haveAnAccount ion-button {
+  margin-left: 3px;
+  font-size: 16px;
+  font-weight: 400;
+}

@@ -14,41 +14,30 @@ import { ReactComponent as LogotypeDark } from "../assets/logo/logotype-dark.svg
 
 const Logo = ({ type }) => {
   const LogoSelected = () => {
-    if (type === "LogoVertical") {
+    if (type && type === "LogoVertical") {
       return <LogoVertical />
-    }
-    if (type === "LogoVerticalDark") {
+    } else if (type === "LogoVerticalDark") {
       return <LogoVerticalDark />
-    }
-    if (type === "LogoVerticalGradient") {
+    } else if (type === "LogoVerticalGradient") {
       return <LogoVerticalGradient />
-    }
-    if (type === "Mono") {
+    } else if (type === "Mono") {
       return <Mono />
-    }
-    if (type === "MonoDark") {
+    } else if (type === "MonoDark") {
       return <MonoDark />
-    }
-    if (type === "MonoGradient") {
+    } else if (type === "MonoGradient") {
       return <MonoGradient />
-    }
-    if (type === "LogoLight ") {
-      return <LogoLight />
-    }
-    if (type === "LogoDark") {
+    } else if (type === "LogoDark") {
       return <LogoDark />
-    }
-    if (type === "LogoGradient") {
+    } else if (type === "LogoGradient") {
       return <LogoGradient />
-    }
-    if (type === "LogoGradient2") {
+    } else if (type === "LogoGradient2") {
       return <LogoGradient2 />
-    }
-    if (type === "Logotype") {
+    } else if (type === "Logotype") {
       return <Logotype />
-    }
-    if (type === "LogotypeDark") {
+    } else if (type === "LogotypeDark") {
       return <LogotypeDark />
+    } else {
+      return <LogoLight />
     }
   }
 

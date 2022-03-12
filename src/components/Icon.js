@@ -1,7 +1,7 @@
 import Icons from "../assets/icons/icons.svg"
 import PropTypes from "prop-types"
 
-const Icon = ({ name, fill, size, height, width, focused }) => (
+const Icon = ({ name, fill, size, height, width }) => (
   <svg
     className={`icon icon-${name}`}
     fill={fill}
