@@ -56,8 +56,9 @@ const Login = () => {
             theme="link"
             color="var(--dt-primary-500)"
             hoverColor="var(--dt-primary-300)"
-            className="LoginForgotPassword"
+            textColor="var(--dt-primary-500)"
             text="Forgot Password?"
+            className="LoginForgotPassword"
           />
         </form>
 
