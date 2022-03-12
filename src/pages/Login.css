@@ -1,0 +1,48 @@
+.Login::part(scroll) {
+  padding: var(--dt-page-padding);
+}
+.Login::part(background) {
+  background-color: var(--dt-primary);
+}
+
+.LoginWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.Login .Logo {
+  width: fit-content;
+  margin: 0 auto;
+}
+.Login .Logo svg {
+  height: 160px;
+  width: 94px;
+}
+
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: 56px auto 0;
+}
+
+.LoginForm ion-input {
+  margin-top: 14px;
+}
+.LoginForm .LoginButton {
+  margin-top: 30px;
+}
+.LoginForm .LoginForgotPassword {
+  align-self: flex-end;
+}
+
+.Login .orLoginWith {
+  user-select: none;
+  margin: 32px auto 0;
+  color: #fff;
+  font-weight: 400;
+}
