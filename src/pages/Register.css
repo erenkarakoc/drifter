@@ -1,5 +1,5 @@
 .Register::part(scroll) {
-  padding: var(--dt-page-padding);
+  padding: 20px 0;
 }
 .Register::part(background) {
   background-color: var(--dt-primary);
@@ -24,9 +24,16 @@
 
 .Register .RegisterWith {
   display: flex;
-  max-width: 320px;
+  max-width: 300px;
   width: 100%;
   margin: 20px auto 0;
+}
+.Register .RegisterWith ion-button {
+  height: 44px;
+  width: 50%;
+}
+.Register .RegisterWith ion-button button::part(native) {
+  font-size: 14px;
 }
 .Register .RegisterWith ion-button:not(:first-of-type) {
   margin-left: 10px;
@@ -40,7 +47,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  max-width: 320px;
+  max-width: 300px;
   width: 100%;
   margin: 32px auto 0;
   color: #b9c0cf;
@@ -71,7 +78,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 320px;
+  width: 300px;
   margin: 20px auto 0;
 }
 
@@ -79,20 +86,13 @@
   margin-top: 14px;
   width: 100%;
 }
-.RegisterForm .RegisterButton {
-  margin: 30px 0 0;
-}
-.RegisterForm .RegisterForgotPassword {
-  margin: 12px 0 0;
-  align-self: flex-end;
-}
 
 .Register .haveAnAccount {
   user-select: none;
   display: flex;
   align-items: center;
-  margin: 26px auto 0;
-  color: #fff;
+  margin: 30px auto 0 0;
+  color: #cbd1d9;
   font-weight: 400;
   line-height: 1;
 }
@@ -100,4 +100,8 @@
   margin-left: 3px;
   font-size: 16px;
   font-weight: 400;
+}
+
+.RegisterForm .RegisterButton {
+  margin: 14px 0 0;
 }

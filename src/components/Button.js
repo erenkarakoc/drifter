@@ -22,7 +22,7 @@ const Button = ({
   const DTButton = styled(IonButton)`
     height: ${theme === "fab" ? "50px" : theme === "link" ? "unset" : "60px"};
     width: ${theme === "fab" ? "50px" : "100%"};
-    max-width: 320px;
+    max-width: 300px;
     text-transform: ${textTransform ? textTransform : "unset"};
     letter-spacing: unset;
 
@@ -108,8 +108,8 @@ const Button = ({
       content: none;
     }
 
-    & svg,
-    & img {
+    &:not(.theme-button-fab) svg,
+    &:not(.theme-button-fab) img {
       margin-right: 10px;
     }
   `

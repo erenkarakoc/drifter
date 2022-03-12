@@ -70,6 +70,18 @@ const Register = () => {
             placeholder="Password"
             autocomplete="off"
           />
+
+          <div className="haveAnAccount body">
+            Already have an account?
+            <Button
+              theme="link"
+              text="Log in"
+              textColor="var(--dt-pink)"
+              routerLink="/login"
+            />
+            .
+          </div>
+
           <Button
             type="submit"
             theme="rounded"
@@ -78,21 +90,9 @@ const Register = () => {
             textColor="#ffffff"
             activeText="#ffffff"
             className="RegisterButton ion-text-uppercase"
-            text="Register"
+            text="Sign Up"
           />
         </form>
-
-        <div className="haveAnAccount body">
-          Already have an account?
-          <Button
-            theme="link"
-            text="Log in"
-            textColor="var(--dt-pink)"
-            className="RegisterForgotPassword"
-            routerLink="/login"
-          />
-          .
-        </div>
       </div>
     </IonContent>
   )

@@ -14,7 +14,7 @@ const Input = ({
   const DTInput = styled(IonInput)`
     flex-shrink: 0;
     flex-grow: 0;
-    max-width: 320px;
+    max-width: 300px;
 
     .native-input {
       position: relative;

@@ -1,5 +1,5 @@
 .Login::part(scroll) {
-  padding: var(--dt-page-padding);
+  padding: 20px 0;
 }
 .Login::part(background) {
   background-color: var(--dt-primary);
@@ -27,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 320px;
+  width: 300px;
   margin: 56px auto 0;
 }
 
