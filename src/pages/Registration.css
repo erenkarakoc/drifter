@@ -1,3 +1,7 @@
+.RegistrationForm {
+  display: flex;
+  flex-direction: column;
+}
 .RegistrationForm .RegistrationTypes {
   display: grid;
   grid-template-columns: auto auto;
@@ -10,5 +14,6 @@
 }
 
 .RegistrationForm .RegistrationNext {
-  margin: 14vh 0 0;
+  margin: 14vh auto 0;
+  width: 160px;
 }

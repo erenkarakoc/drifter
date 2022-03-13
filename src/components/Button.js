@@ -33,7 +33,11 @@ export default class Button extends Component {
       letter-spacing: unset;
 
       ${theme === "link"
-        ? "display: inline-block; margin: 0; margin-inline: 0;"
+        ? `
+          display: inline-block;
+          margin: 0;
+          margin-inline: 0;
+        `
         : ""}
 
       &::part(native) {
@@ -135,6 +139,15 @@ export default class Button extends Component {
       &:not(.theme-button-fab) svg,
       &:not(.theme-button-fab) img {
         margin-right: 10px;
+      }
+
+      [disabled] {
+        opacity: 1;
+      }
+      [disabled]&::part(native) {
+        color: #fff;
+        background-color: var(--dt-primary-500);
+        border-color: var(--dt-primary-500);
       }
     `
 

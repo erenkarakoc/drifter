@@ -29,7 +29,7 @@ const Registration = () => {
           </Text>
 
           <form className="RegistrationForm">
-            <div className="RegistrationTytpes">
+            <div className="RegistrationTypes">
               <RegistrationType
                 checked
                 type="private"
@@ -50,17 +50,20 @@ const Registration = () => {
                 name="registrationType"
               />
             </div>
+            <Button
+              type="submit"
+              theme="rounded"
+              disabled={true}
+              color="var(--dt-pink)"
+              hoverColor="var(--dt-pink-3)"
+              activeColor="var(--dt-pink-3)"
+              textColor="#fff"
+              activeText="#fff"
+              className="RegistrationNext"
+            >
+              Next
+            </Button>
           </form>
-          <Button
-            type="submit"
-            theme="rounded"
-            color="var(--dt-primary)"
-            hoverColor="var(--dt-primary-300)"
-            textColor="var(--dt-primary-500)"
-            className="RegistrationNext"
-          >
-            Next
-          </Button>
         </div>
       </IonContent>
     </IonPage>
