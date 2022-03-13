@@ -17,11 +17,11 @@ const Home = () => {
   const router = useIonRouter()
 
   return (
-    <IonPage>
+    <>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <Button type="link" text="Back" onClick={router.goBack}/>
+            <Button type="link" text="Back" onClick={router.goBack} />
           </IonButtons>
           <IonTitle>Drifter</IonTitle>
         </IonToolbar>
@@ -38,7 +38,7 @@ const Home = () => {
           </IonToolbar>
         </IonHeader>
       </IonContent>
-    </IonPage>
+    </>
   )
 }
 

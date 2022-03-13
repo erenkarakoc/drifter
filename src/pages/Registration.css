@@ -1,0 +1,14 @@
+.RegistrationForm .RegistrationTypes {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
+  width: 100%;
+}
+
+.RegistrationForm .RegistrationTypes {
+  margin: 11vh 0 0;
+}
+
+.RegistrationForm .RegistrationNext {
+  margin: 14vh 0 0;
+}

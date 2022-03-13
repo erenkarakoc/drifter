@@ -1,27 +1,3 @@
-.Login::part(scroll) {
-  padding: 20px 0;
-}
-.Login::part(background) {
-  background-color: var(--dt-primary);
-}
-
-.LoginWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-}
-
-.Login .Logo {
-  width: fit-content;
-  margin: 0 auto;
-}
-.Login .Logo svg {
-  height: 160px;
-  width: 94px;
-}
-
 .LoginForm {
   display: flex;
   flex-direction: column;
@@ -37,6 +13,7 @@
 }
 .LoginForm .LoginButton {
   margin: 30px 0 0;
+  width: 100%;
 }
 .LoginForm .LoginForgotPassword {
   margin: 12px 0 0;

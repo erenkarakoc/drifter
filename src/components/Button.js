@@ -8,8 +8,8 @@ import Icon from "./Icon"
 export default class Button extends Component {
   render() {
     const {
+      children,
       theme,
-      text,
       icon,
       iconFill,
       iconSize,
@@ -27,7 +27,7 @@ export default class Button extends Component {
 
     const DTButton = styled(IonButton)`
       height: ${theme === "fab" ? "50px" : theme === "link" ? "unset" : "60px"};
-      width: ${theme === "fab" ? "50px" : "100%"};
+      width: ${theme === "fab" ? "50px" : "unset"};
       max-width: 300px;
       text-transform: ${textTransform ? textTransform : "unset"};
       letter-spacing: unset;
@@ -149,14 +149,14 @@ export default class Button extends Component {
           <Icon
             name={icon}
             fill={iconFill ? iconFill : "#a2a2a2"}
-            height={iconHeight ? iconHeight : 24}
-            width={iconWidth ? iconWidth : 24}
+            height={iconSize ? iconSize : iconHeight ? iconHeight : 24}
+            width={iconSize ? iconSize : iconWidth ? iconWidth : 24}
             size={iconSize ? iconSize : 24}
           />
         ) : (
           ""
         )}
-        {text}
+        {children}
       </DTButton>
     )
   }

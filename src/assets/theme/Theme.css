@@ -1,0 +1,29 @@
+.Onboarding::part(scroll) {
+  padding: 20px 0;
+}
+.Onboarding::part(background) {
+  background-color: var(--dt-primary);
+}
+
+.OnboardingWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.OnboardingWrapper .Logo {
+  width: fit-content;
+  margin: 0 auto;
+}
+.OnboardingWrapper .Logo svg {
+  height: 160px;
+  width: 94px;
+}
+
+.noIcon::part(icon) {
+  display: none;
+}

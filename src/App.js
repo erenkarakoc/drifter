@@ -1,18 +1,14 @@
 // React & Ionic
 import { Redirect, Route } from "react-router-dom"
-import {
-  IonApp,
-  IonRouterOutlet,
-  setupIonicReact,
-  IonToolbar,
-  IonButton
-} from "@ionic/react"
+import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
 
 // Pages
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import ForgotPassword from "./pages/ForgotPassword"
+import Registration from "./pages/Registration"
 import Materials from "./pages/Materials"
 
 // Core CSS required for Ionic components to work properly
@@ -53,6 +49,12 @@ const App = () => {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/forgot-password">
+            <ForgotPassword />
+          </Route>
+          <Route exact path="/registration">
+            <Registration />
           </Route>
           <Route exact path="/materials">
             <Materials />
