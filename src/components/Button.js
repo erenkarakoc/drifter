@@ -141,13 +141,21 @@ export default class Button extends Component {
         margin-right: 10px;
       }
 
-      [disabled] {
-        opacity: 1;
+      .button-disabled&::part(native) {
+        &[disabled="true"] {
+          opacity: 1;
+        }
       }
-      [disabled]&::part(native) {
+      .button-disabled&::part(native) {
         color: #fff;
-        background-color: var(--dt-primary-500);
-        border-color: var(--dt-primary-500);
+        background-color: var(--dt-primary-500) !important;
+        border-color: var(--dt-primary-500) !important;
+
+        &:hover {
+          color: #fff;
+          background-color: var(--dt-primary-500) !important;
+          border-color: var(--dt-primary-500) !important;
+        }
       }
     `
 

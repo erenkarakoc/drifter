@@ -44,9 +44,9 @@ const Materials = () => {
               <Button routerLink="/forgot-password" theme="link">
                 Forgot Password
               </Button>
-              {/* <Button routerLink="/registration" theme="link">
+              <Button routerLink="/registration" theme="link">
                 Registration
-              </Button> */}
+              </Button>
             </div>
 
             <h1>Logos</h1>

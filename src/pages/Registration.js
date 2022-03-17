@@ -1,65 +1,78 @@
+import React from "react"
+
 import "./Registration.css"
 
 import { IonPage, IonContent, useIonRouter } from "@ionic/react"
+import { useDispatch, useSelector } from "react-redux"
+
+import { changeRegType } from "../redux/store/registrationTypesSlice"
 
 import Button from "../components/Button"
 import Text from "../components/Text"
 import RegistrationType from "../components/RegistrationType"
 
 const Registration = () => {
+  // eslint-disable-next-line no-unused-vars
   const router = useIonRouter()
+  const dispatch = useDispatch()
+
+  const { regType } = useSelector((state) => state.regTypes)
+
+  const handleChange = (e) => {
+    dispatch(changeRegType(e.target.value))
+  }
+
   return (
     <IonPage>
       <IonContent className="Onboarding Registration">
         <div className="OnboardingWrapper">
-          <Button
-            type="button"
-            theme="link"
-            color="var(--dt-primary-500)"
-            hoverColor="var(--dt-primary-300)"
-            textColor="var(--dt-primary-500)"
-            className="ForgotPasswordBacktoLogin"
-            onClick={router.goBack}
-          >
-            Back
-          </Button>
-
           <Text color="white" weight={400} spacing="0.3px">
             <h2>Select the registration type</h2>
           </Text>
 
-          <form className="RegistrationForm">
+          <form
+            className="RegistrationForm"
+            onSubmit={() => router.push("/materials", "forward")}
+          >
             <div className="RegistrationTypes">
               <RegistrationType
-                checked
+                id="registrationPrivate"
                 type="private"
-                text="Private"
+                name="registrationType"
                 value="private"
-                name="registrationType"
+                text="Private"
+                onChange={handleChange}
+                required
               />
               <RegistrationType
+                id="registrationCompany"
                 type="company"
-                text="Company"
-                value="company"
                 name="registrationType"
+                value="company"
+                text="Company"
+                onChange={handleChange}
+                required
               />
               <RegistrationType
+                id="registrationRental"
                 type="rental"
-                text="Rental car company"
-                value="rental"
                 name="registrationType"
+                value="rental"
+                text="Rental car company"
+                onChange={handleChange}
+                required
               />
             </div>
             <Button
               type="submit"
               theme="rounded"
-              disabled={true}
               color="var(--dt-pink)"
               hoverColor="var(--dt-pink-3)"
               activeColor="var(--dt-pink-3)"
               textColor="#fff"
               activeText="#fff"
               className="RegistrationNext"
+              disabled={!!regType ? false : true}
             >
               Next
             </Button>
