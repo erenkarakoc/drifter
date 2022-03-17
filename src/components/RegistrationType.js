@@ -24,6 +24,7 @@ const RegistrationTypeWrapper = styled("div")`
     font-weight: 400;
     text-align: center;
     transition: all 0.1s ease-out;
+    text-transform: capitalize;
   }
 
   & svg,

@@ -1,5 +1,3 @@
-import React from "react"
-
 import "./Registration.css"
 
 import { IonPage, IonContent, useIonRouter } from "@ionic/react"
@@ -12,7 +10,6 @@ import Text from "../components/Text"
 import RegistrationType from "../components/RegistrationType"
 
 const Registration = () => {
-  // eslint-disable-next-line no-unused-vars
   const router = useIonRouter()
   const dispatch = useDispatch()
 
@@ -32,7 +29,10 @@ const Registration = () => {
 
           <form
             className="RegistrationForm"
-            onSubmit={() => router.push("/materials", "forward")}
+            onSubmit={(e) => {
+              e.preventDefault()
+              router.push("/registration-form", "forward")
+            }}
           >
             <div className="RegistrationTypes">
               <RegistrationType

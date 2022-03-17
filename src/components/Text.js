@@ -9,9 +9,10 @@ export default class Text extends Component {
       activeColor,
       size,
       weight,
+      height,
+      margin,
       align,
       spacing,
-      height,
       className,
       ...props
     } = this.props
@@ -28,6 +29,7 @@ export default class Text extends Component {
         ${align ? "text-align: " + align + " !important;" : ""}
         ${spacing ? "letter-spacing: " + spacing + " !important;" : ""}
         ${height ? "line-height: " + height + " !important;" : ""}
+        ${margin ? "margin: " + margin + " !important;" : ""}
         ${activeColor ? "&:active {color: " + activeColor + ";}" : ""}
       }
     `

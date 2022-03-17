@@ -2,18 +2,23 @@
   display: flex;
   flex-direction: column;
 }
+
 .RegistrationForm .RegistrationTypes {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 20px;
   width: 100%;
+  margin: 8vh 0 0;
 }
 
-.RegistrationForm .RegistrationTypes {
-  margin: 11vh 0 0;
+.RegistrationForm .DTInput:first-of-type {
+  margin-top: 40px;
+}
+.RegistrationForm .DTInput:not(:first-of-type) {
+  margin-top: 14px;
 }
 
 .RegistrationForm .RegistrationNext {
-  margin: 14vh auto 0;
+  margin: 8vh auto 0;
   width: 160px;
 }

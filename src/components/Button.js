@@ -22,13 +22,19 @@ export default class Button extends Component {
       activeColor,
       activeText,
       textTransform,
+      margin,
       ...buttonProps
     } = this.props
 
     const DTButton = styled(IonButton)`
+      --background-focus: unset;
+      --background-active: unset;
+      --background-hover: unset;
+
       height: ${theme === "fab" ? "50px" : theme === "link" ? "unset" : "60px"};
       width: ${theme === "fab" ? "50px" : "unset"};
       max-width: 300px;
+      ${margin ? "margin: " + margin + " !important;" : ""}
       text-transform: ${textTransform ? textTransform : "unset"};
       letter-spacing: unset;
 

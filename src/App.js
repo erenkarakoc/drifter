@@ -9,6 +9,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import ForgotPassword from "./pages/ForgotPassword"
 import Registration from "./pages/Registration"
+import RegistrationForm from "./pages/RegistrationForm"
 import Materials from "./pages/Materials"
 
 // Core CSS required for Ionic components to work properly
@@ -56,11 +57,19 @@ const App = () => {
           <Route exact path="/registration">
             <Registration />
           </Route>
+          <Route exact path="/registration-form">
+            <RegistrationForm />
+          </Route>
           <Route exact path="/materials">
             <Materials />
           </Route>
           <Route exact path="/">
             <Redirect to="/login" />
+          </Route>
+
+          {/* Not Found */}
+          <Route>
+            <Redirect to="/" />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>

@@ -194,6 +194,16 @@ const Materials = () => {
               >
                 Text button
               </Button>
+              <Button
+                type="button"
+                theme="link"
+                color="var(--dt-primary-500)"
+                hoverColor="var(--dt-primary-300)"
+                textColor="var(--dt-primary-500)"
+                className="ion-margin-top"
+              >
+                Back
+              </Button>
             </div>
 
             <h1>Inputs</h1>

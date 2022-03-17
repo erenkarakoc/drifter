@@ -16,6 +16,9 @@ export default class Input extends Component {
       iconWidth,
       type,
       theme,
+      onChange,
+      onKeyUp,
+      onKeyDown,
       ...inputProps
     } = this.props
 
@@ -26,13 +29,13 @@ export default class Input extends Component {
 
       .native-input {
         position: relative;
-        height: ${className && className.includes("rounded") ? "50px" : "60px"};
+        height: 50px;
         width: 100%;
         padding: 0 62px 0 22px;
         border: 2px solid ${borderColor ? borderColor : "transparent"};
         border-radius: ${className && className.includes("rounded")
           ? "30px"
-          : "15px"};
+          : "4px"};
         background-color: #fff;
         color: #000;
         font-size: 16px;
@@ -66,8 +69,11 @@ export default class Input extends Component {
     return (
       <>
         <DTInput
-          className={className}
+          className={"DTInput " + className}
           type={`${type ? type : "text"}`}
+          onChange={onChange}
+          onKeyUp={onKeyUp}
+          onKeyDown={onKeyDown}
           {...inputProps}
         >
           {icon ? (
