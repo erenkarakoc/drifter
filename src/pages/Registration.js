@@ -24,7 +24,7 @@ const Registration = () => {
       <IonContent className="Onboarding Registration">
         <div className="OnboardingWrapper">
           <Text color="white" weight={400} spacing="0.3px">
-            <h2>Select the registration type</h2>
+            <h2>Select registration type</h2>
           </Text>
 
           <form
