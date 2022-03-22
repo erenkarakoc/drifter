@@ -3,7 +3,7 @@ import "./Registration.css"
 import { IonPage, IonContent, useIonRouter } from "@ionic/react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { changeRegType } from "../redux/store/registrationTypesSlice"
+import { changeRegType } from "../redux/slices/registrationTypesSlice"
 
 import Button from "../components/Button"
 import Text from "../components/Text"
