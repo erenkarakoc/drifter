@@ -20,9 +20,9 @@ export default class Button extends Component {
     } = this.props
 
     const DTButton = styled(IonButton)`
-      --background-focus: unset !important;
-      --background-active: unset !important;
-      --background-hover: unset !important;
+      --background-focused: unset;
+      --background-activated: unset;
+      --background-hover: unset;
 
       height: 74px;
       ${margin ? "margin: " + margin + ";" : "margin: 0;"}
@@ -43,13 +43,6 @@ export default class Button extends Component {
         font-size: 24px;
         font-weight: 600;
         transition: all 0.1s ease-out;
-
-        &:hover {
-          background-color: var(--dt-dark);
-        }
-        &:active {
-          background-color: var(--dt-dark);
-        }
       }
     `
 

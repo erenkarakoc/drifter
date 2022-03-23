@@ -56,24 +56,25 @@ export default class PhoneInput extends Component {
     `
 
     const DTPhoneInput = styled(IonInput)`
+      --color: var(--dt-dark);
+      --padding-top: 0;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      --padding-bottom: 0;
+      --background: transparent;
+      --placeholder-color: #b5b5b5;
+      --placeholder-opacity: 1;
+
       .native-input {
         position: relative;
         height: 56px;
         width: 100%;
-        padding: 0 16px;
         border: 1px solid var(--dt-dark);
         border-radius: 4px;
-        background-color: transparent;
-        color: var(--dt-dark);
         font-family: "Montserrat", sans-serif;
         font-size: 24px;
         font-weight: 300;
         text-align: center;
-
-        &::placeholder {
-          color: #b5b5b5;
-          opacity: 1;
-        }
       }
     `
 
@@ -98,10 +99,20 @@ export default class PhoneInput extends Component {
           </DTPhoneSelect>
           <DTPhoneInput
             type="tel"
+            pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
             placeholder="735 44 55 36"
-            maxlength="10"
+            maxlength="11"
+            onKeyDown={(e) => {
+              if (e.which < 48 || e.which > 57) e.preventDefault()
+            }}
             onKeyUp={(e) => {
-              e.target.value.replace(/(\d{3})\D?(\d{4})\D?(\d{4})/, "$1 $2 $3")
+              e.target.value = e.target.value
+                .replace(/[^\dA-Z]/g, "")
+                .replace(
+                  /([0-9]{3})([0-9]{2})([0-9]{2})([0-9]{2})/g,
+                  "$1 $2 $3 $4"
+                )
+                .trim()
             }}
           />
         </DTPhoneInputWrapper>
