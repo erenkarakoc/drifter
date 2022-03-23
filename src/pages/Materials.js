@@ -35,17 +35,8 @@ const Materials = () => {
             <h1>Pages</h1>
 
             <div className="MaterialsPages">
-              <Button routerLink="/login" routerAnimation="slide" theme="link">
-                Login
-              </Button>
-              <Button routerLink="/register" theme="link">
-                Register
-              </Button>
-              <Button routerLink="/forgot-password" theme="link">
-                Forgot Password
-              </Button>
-              <Button routerLink="/registration" theme="link">
-                Registration
+              <Button routerLink="/landing" routerAnimation="down" theme="link">
+                Landing
               </Button>
             </div>
 
@@ -139,20 +130,11 @@ const Materials = () => {
             <h1>Buttons</h1>
 
             <div className="MaterialsButtons">
-              <Button
-                textColor="#fff"
-                onClick={handleButtonClick}
-                className="ion-margin-top"
-                test-attribute="working"
-              >
+              <Button onClick={handleButtonClick} className="ion-margin-top">
                 Button primary
               </Button>
               <Button
                 theme="rounded"
-                color={"var(--dt-pink)"}
-                activeColor={"var(--dt-pink-3)"}
-                textColor="#fff"
-                activeText={"#fff"}
                 className="ion-margin-top"
                 onClick={() => {
                   setTestModalOpen(true)
@@ -162,11 +144,6 @@ const Materials = () => {
               </Button>
               <Button
                 theme="rounded"
-                color="transparent"
-                textColor="#fff"
-                activeText="#1f1f1f"
-                activeColor="#fff"
-                borderColor="#fff"
                 className="ion-margin-top"
                 onClick={() => {
                   setTestModalOpen(true)
@@ -176,8 +153,6 @@ const Materials = () => {
               </Button>
               <Button
                 theme="text"
-                textColor="#fff"
-                activeColor="rgba(140, 206, 228, 0.16)"
                 className="ion-margin-top ion-text-uppercase"
                 onClick={() =>
                   present({
@@ -194,14 +169,7 @@ const Materials = () => {
               >
                 Text button
               </Button>
-              <Button
-                type="button"
-                theme="link"
-                color="var(--dt-primary-500)"
-                hoverColor="var(--dt-primary-300)"
-                textColor="var(--dt-primary-500)"
-                className="ion-margin-top"
-              >
+              <Button type="button" theme="link" className="ion-margin-top">
                 Back
               </Button>
             </div>

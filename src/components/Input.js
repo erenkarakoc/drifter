@@ -7,18 +7,12 @@ import Icon from "./Icon"
 export default class Input extends Component {
   render() {
     const {
-      className,
-      borderColor,
       icon,
       iconFill,
       iconSize,
       iconHeight,
       iconWidth,
-      type,
       theme,
-      onChange,
-      onKeyUp,
-      onKeyDown,
       ...inputProps
     } = this.props
 
@@ -31,13 +25,8 @@ export default class Input extends Component {
         position: relative;
         height: 50px;
         width: 100%;
-        padding: 0 62px 0 22px;
-        border: 2px solid ${borderColor ? borderColor : "transparent"};
-        border-radius: ${className && className.includes("rounded")
-          ? "30px"
-          : "4px"};
-        background-color: #fff;
-        color: #000;
+
+        background-color: transparent;
         font-size: 16px;
         font-weight: 400;
         transition: all 0.1s ease-out;
@@ -68,14 +57,7 @@ export default class Input extends Component {
 
     return (
       <>
-        <DTInput
-          className={"DTInput " + className}
-          type={`${type ? type : "text"}`}
-          onChange={onChange}
-          onKeyUp={onKeyUp}
-          onKeyDown={onKeyDown}
-          {...inputProps}
-        >
+        <DTInput {...inputProps}>
           {icon ? (
             <Icon
               name={icon}

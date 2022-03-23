@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
-import registrationTypesSlice from "./slices/registrationTypesSlice"
+import sliceName from "./slices/sliceName"
 
 export const store = configureStore({
   reducer: {
-    regTypes: registrationTypesSlice,
+    reducerName: sliceName,
   },
 })

@@ -1,8 +1,13 @@
-.Onboarding::part(scroll) {
-  padding: 20px 0;
+::part(background) {
+  --background: var(--dt-background);
 }
-.Onboarding::part(background) {
-  background-color: var(--dt-primary);
+
+.Onboarding {
+  height: 100%;
+}
+
+.Onboarding::part(scroll) {
+  padding: 24px 0;
 }
 
 .OnboardingWrapper {
@@ -11,17 +16,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  max-width: 320px;
+  max-width: 284px;
   margin: 0 auto;
-}
-
-.OnboardingWrapper .Logo {
-  width: fit-content;
-  margin: 0 auto;
-}
-.OnboardingWrapper .Logo svg {
-  height: 160px;
-  width: 94px;
 }
 
 .noIcon::part(icon) {

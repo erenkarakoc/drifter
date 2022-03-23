@@ -4,13 +4,9 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
 
 // Pages
-import Home from "./pages/Home"
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import ForgotPassword from "./pages/ForgotPassword"
-import Registration from "./pages/Registration"
-import RegistrationForm from "./pages/RegistrationForm"
 import Materials from "./pages/Materials"
+import Landing from "./pages/Landing"
+import EnterPhoneNumber from "./pages/EnterPhoneNumber"
 
 // Core CSS required for Ionic components to work properly
 import "@ionic/react/css/core.css"
@@ -42,29 +38,19 @@ const App = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/register">
-            <Register />
-          </Route>
-          <Route exact path="/forgot-password">
-            <ForgotPassword />
-          </Route>
-          <Route exact path="/registration">
-            <Registration />
-          </Route>
-          <Route exact path="/registration-form">
-            <RegistrationForm />
+          <Route exact path="/">
+            <Redirect to="/landing" />
           </Route>
           <Route exact path="/materials">
             <Materials />
           </Route>
-          <Route exact path="/">
-            <Redirect to="/login" />
+
+          {/* Onboarding */}
+          <Route exact path="/landing">
+            <Landing />
+          </Route>
+          <Route exact path="/enter-phone-number">
+            <EnterPhoneNumber />
           </Route>
 
           {/* Not Found */}

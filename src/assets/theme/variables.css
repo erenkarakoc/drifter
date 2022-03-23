@@ -5,23 +5,10 @@
   --dt-page-padding: 38px;
 
   /* Colors */
-  --dt-primary: #353355;
-  --dt-primary-600: #83819c;
-  --dt-primary-500: #7c79af;
-  --dt-primary-300: #c0c0cb;
-  --dt-primary-200: #eaeaee;
+  --dt-background: #f3f3f3;
 
-  --dt-blue: #1a9ac6;
-  --dt-blue-3: #1683a8;
-  --dt-blue-2: #126b8a;
-  --dt-blue-1: #0e546c;
-
-  --dt-pink: #b12083;
-  --dt-pink-3: #941b6e;
-  --dt-pink-2: #941b6e;
-  --dt-pink-1: #771658;
-
-  --dt-black-4: #767676;
+  --dt-primary: #4d4960;
+  --dt-dark: #3e3e3e;
 
   --ion-color-step-50: #0d0d0d;
   --ion-color-step-75: #121212;
@@ -122,13 +109,11 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
    * */
-
-/*
 
   body {
     --ion-color-primary: #428cff;
@@ -200,8 +185,6 @@
    * -------------------------------------------
    */
 
-/*
-
   .ios body {
     --ion-background-color: #000000;
     --ion-background-color-rgb: 0, 0, 0;
@@ -245,8 +228,6 @@
    * -------------------------------------------
    */
 
-/*
-
   .md body {
     --ion-background-color: #121212;
     --ion-background-color-rgb: 18, 18, 18;
@@ -284,4 +265,4 @@
 
     --ion-card-background: #1e1e1e;
   }
-} */
+}

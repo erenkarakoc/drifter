@@ -9,15 +9,17 @@ export default class Text extends Component {
       activeColor,
       size,
       weight,
-      height,
+      lineHeight,
       margin,
       align,
       spacing,
+      select,
       className,
       ...props
     } = this.props
 
     const DTText = styled("div")`
+      ${select ? "user-select: " + select + " !important;" : ""}
       ${children.type} {
         ${color ? "color: " + color + " !important;" : ""}
         ${size
@@ -28,7 +30,7 @@ export default class Text extends Component {
         ${weight ? "font-weight: " + weight + " !important;" : ""}
         ${align ? "text-align: " + align + " !important;" : ""}
         ${spacing ? "letter-spacing: " + spacing + " !important;" : ""}
-        ${height ? "line-height: " + height + " !important;" : ""}
+        ${lineHeight ? "line-height: " + lineHeight + " !important;" : ""}
         ${margin ? "margin: " + margin + " !important;" : ""}
         ${activeColor ? "&:active {color: " + activeColor + ";}" : ""}
       }
