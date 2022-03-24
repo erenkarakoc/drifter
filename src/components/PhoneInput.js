@@ -4,11 +4,21 @@ import { IonInput, IonSelect, IonSelectOption } from "@ionic/react"
 
 import axios from "axios"
 import styled from "styled-components"
+import {
+  AsYouType,
+  isValidPhoneNumber,
+  validatePhoneNumberLength,
+} from "libphonenumber-js"
 
 export default class PhoneInput extends Component {
   state = {
     countries: [],
-    selectedCountryCode: "+46",
+    selectedCountry: {
+      country: "SE",
+      code: "+46",
+      template: "123 4567 890",
+    },
+    isValid: false,
   }
 
   componentDidMount() {
@@ -27,7 +37,7 @@ export default class PhoneInput extends Component {
       position: relative;
       height: 56px;
       min-width: 70px;
-      margin-right: 18px;
+      margin-right: 14px;
       padding: 0 14px;
       color: var(--dt-dark);
       border: 1px solid var(--dt-dark);
@@ -40,7 +50,7 @@ export default class PhoneInput extends Component {
       }
       &::part(placeholder) {
         opacity: 1;
-        color: #b5b5b5;
+        color: var(--dt-dark);
         font-size: 24px;
         font-weight: 300;
       }
@@ -74,7 +84,6 @@ export default class PhoneInput extends Component {
         font-family: "Montserrat", sans-serif;
         font-size: 24px;
         font-weight: 300;
-        text-align: center;
       }
     `
 
@@ -83,36 +92,39 @@ export default class PhoneInput extends Component {
         <DTPhoneInputWrapper>
           <DTPhoneSelect
             interface="action-sheet"
-            value={this.state.selectedCountryCode}
-            placeholder="+43"
+            value={this.state.selectedCountry.code}
+            placeholder={this.state.selectedCountry.code}
             onIonChange={(e) => {
+              const asYouType = new AsYouType(e.detail.value.cca2)
+              asYouType.input("1234567890")
               this.setState({
-                selectedCountryCode: e.detail.value[0],
+                selectedCountry: {
+                  country: e.detail.value.cca2,
+                  code: e.detail.value.callingCodes[0],
+                  template: asYouType.getTemplate(),
+                },
               })
             }}
           >
             {this.state.countries.map((country) => (
-              <IonSelectOption key={country.ccn3} value={country.callingCodes}>
-                {country.flag} {country.callingCodes} {country.name.common}
+              <IonSelectOption key={country.ccn3} value={country}>
+                {country.flag} {country.callingCodes[0]} {country.name.common}
               </IonSelectOption>
             ))}
           </DTPhoneSelect>
           <DTPhoneInput
             type="tel"
-            pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
-            placeholder="735 44 55 36"
-            maxlength="11"
+            placeholder={this.state.selectedCountry.template}
+            id="DTPhoneInput"
             onKeyDown={(e) => {
-              if (e.which < 48 || e.which > 57) e.preventDefault()
+              e.target.value = new AsYouType(
+                this.state.selectedCountry.country
+              ).input(e.target.value)
             }}
             onKeyUp={(e) => {
-              e.target.value = e.target.value
-                .replace(/[^\dA-Z]/g, "")
-                .replace(
-                  /([0-9]{3})([0-9]{2})([0-9]{2})([0-9]{2})/g,
-                  "$1 $2 $3 $4"
-                )
-                .trim()
+              e.target.value = new AsYouType(
+                this.state.selectedCountry.country
+              ).input(e.target.value)
             }}
           />
         </DTPhoneInputWrapper>

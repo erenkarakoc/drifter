@@ -10,7 +10,7 @@ const Landing = () => {
     <IonPage>
       <IonContent scrollEvents={false}>
         <div class="Onboarding">
-          <div className="OnboardingWrapper">
+          <div className="OnboardingWrapper ion-justify-content-center ion-align-items-center">
             <Text
               select="none"
               color="var(--dt-primary)"

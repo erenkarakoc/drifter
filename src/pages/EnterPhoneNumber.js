@@ -10,9 +10,9 @@ const EnterPhoneNumber = () => {
 
   return (
     <IonPage>
-      <IonContent>
+      <IonContent scrollEvents={false}>
         <div className="Onboarding">
-          <div className="OnboardingWrapper">
+          <div className="OnboardingWrapper" style={{ paddingTop: "10vh" }}>
             <Text
               select="none"
               color="var(--dt-primary)"
