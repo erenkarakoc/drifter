@@ -35,8 +35,11 @@ const Materials = () => {
             <h1>Pages</h1>
 
             <div className="MaterialsPages">
-              <Button routerLink="/landing" routerAnimation="down" theme="link">
+              <Button routerLink="/landing" theme="link">
                 Landing
+              </Button>
+              <Button routerLink="/enter-phone-number" theme="link">
+                Enter Phone Number
               </Button>
             </div>
 

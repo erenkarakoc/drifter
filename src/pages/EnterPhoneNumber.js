@@ -25,11 +25,7 @@ const EnterPhoneNumber = () => {
               Enter your mobile for registration:
             </Text>
             <PhoneInput />
-            <Button
-              theme="primary"
-              margin="56px 0 0"
-              routerLink="/enter-phone-number"
-            >
+            <Button theme="primary" margin="56px 0 0" routerLink="/materials">
               Proceed
             </Button>
           </div>

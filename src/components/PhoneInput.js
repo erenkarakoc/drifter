@@ -115,7 +115,6 @@ export default class PhoneInput extends Component {
           <DTPhoneInput
             type="tel"
             placeholder={this.state.selectedCountry.template}
-            id="DTPhoneInput"
             onKeyDown={(e) => {
               e.target.value = new AsYouType(
                 this.state.selectedCountry.country

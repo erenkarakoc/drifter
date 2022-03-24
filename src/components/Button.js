@@ -44,6 +44,25 @@ export default class Button extends Component {
         font-weight: 600;
         transition: all 0.1s ease-out;
       }
+
+      ${theme === "link" ? "height: fit-content; width: fit-content;" : ""}
+      .theme-button-link&::part(native) {
+        padding: 0;
+        background-color: unset;
+        transition: all 0.1s ease-out;
+        line-height: 1.2;
+        --ripple-color: transparent;
+        &:hover {
+          opacity: 0.9;
+          background-color: unset;
+        }
+        &:active {
+          background-color: unset;
+        }
+      }
+      .theme-button-link&::part(native)::after {
+        content: none;
+      }
     `
 
     return (
