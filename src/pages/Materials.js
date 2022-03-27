@@ -77,31 +77,31 @@ const Materials = () => {
             <h1>Typography</h1>
 
             <div className="MaterialsTypography">
-              <Text color="white" size={32} weight={600}>
+              <Text color="black" size={32} weight={600}>
                 <h1>Title</h1>
               </Text>
-              <Text color="white" size="24px" weight={600}>
+              <Text color="black" size="24px" weight={600}>
                 <h2>Title 2</h2>
               </Text>
-              <Text color="white" size={16} weight={600}>
+              <Text color="black" size={16} weight={600}>
                 <h2>Subtitle</h2>
               </Text>
-              <Text color="white" size={14} weight={600}>
+              <Text color="black" size={14} weight={600}>
                 <h2>Subtitle 2</h2>
               </Text>
-              <Text color="white" size={16} weight={400}>
+              <Text color="black" size={16} weight={400}>
                 <p>
                   <u>Body:</u> Lorem ipsum dolor sit amet consectetur
                   adipisicing elit. Magni, quas.
                 </p>
               </Text>
-              <Text color="white" size={14} weight={400}>
+              <Text color="black" size={14} weight={400}>
                 <p>
                   <u>Body 2:</u> Lorem ipsum dolor sit amet consectetur,
                   adipisicing elit. Incidunt, amet.
                 </p>
               </Text>
-              <Text color="white" size={12} weight={400}>
+              <Text color="black" size={12} weight={400}>
                 <p>
                   <u>Caption:</u> Lorem ipsum dolor sit amet consectetur
                   adipisicing elit. Reiciendis, aspernatur!
@@ -112,22 +112,27 @@ const Materials = () => {
             <h1>Icons</h1>
 
             <div className="MaterialsIcons">
-              <Icon name="phone" fill="#fff" size={35} />
-              <Icon name="user" fill="#fff" size={35} />
-              <Icon name="envelope" fill="#fff" size={35} />
-              <Icon name="lock" fill="#fff" size={35} />
-              <Icon name="phone-filled" fill="#fff" size={35} />
-              <Icon name="envelope-filled" fill="#fff" size={35} />
-              <Icon name="google" fill="#fff" size={35} />
-              <Icon name="apple" fill="#fff" size={35} />
-              <Icon name="facebook" fill="#fff" size={35} />
-              <Icon name="reg-private" fill="#fff" size={35} />
-              <Icon name="reg-company" fill="#fff" size={35} />
-              <Icon name="reg-user" fill="#fff" size={35} />
-              <Icon name="reg-rental" fill="#fff" height={35} width={72} />
-              <Icon name="reg-camera" fill="#fff" size={35} />
-              <Icon name="reg-photo" fill="#fff" size={35} />
-              <Icon name="car-w-cable" fill="#fff" size={35} />
+              <Icon name="map-pin" fill="#b12083" size={35} />
+              <Icon name="map-and-pin" fill="#000" size={35} />
+              <Icon name="view" fill="#000" size={35} />
+              <Icon name="chademo" fill="#000" size={35} />
+              <Icon name="type-2" fill="#000" size={35} />
+              <Icon name="css-combo" fill="#000" size={35} />
+              <Icon name="type-1" fill="#000" size={35} />
+              <Icon name="google" fill="#000" size={35} />
+              <Icon name="apple" fill="#000" size={35} />
+              <Icon name="facebook" fill="#000" size={35} />
+              <Icon name="arrow-right" fill="#000" size={35} />
+            </div>
+
+            <h1>Colors</h1>
+
+            <div className="MaterialsColors">
+              <span style={{ background: "var(--dt-primary)" }} />
+              <span style={{ background: "var(--dt-pink)" }} />
+              <span style={{ background: "var(--dt-purple)" }} />
+              <span style={{ background: "var(--dt-purple-2)" }} />
+              <span style={{ background: "var(--dt-purple-3)" }} />
             </div>
 
             <h1>Buttons</h1>
@@ -200,6 +205,8 @@ const Materials = () => {
                 iconSize={24}
               ></Input>
             </div>
+
+            <Logo type="MonoDark" id="splashLogo" />
           </div>
         </div>
 

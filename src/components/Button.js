@@ -12,7 +12,7 @@ export default class Button extends Component {
       theme,
       margin,
       icon,
-      iconFill,
+      iconColor,
       iconSize,
       iconHeight,
       iconWidth,
@@ -24,7 +24,7 @@ export default class Button extends Component {
       --background-activated: unset;
       --background-hover: unset;
 
-      height: 74px;
+      height: 56px;
       ${margin ? "margin: " + margin + ";" : "margin: 0;"}
       text-transform: unset;
       letter-spacing: unset;
@@ -37,10 +37,11 @@ export default class Button extends Component {
 
       .theme-button-primary&::part(native) {
         user-select: none;
-        min-width: 236px;
-        background-color: var(--dt-dark);
-        color: var(--dt-background);
-        font-size: 24px;
+        width: 188px;
+        border-radius: 56px;
+        background-color: var(--dt-purple);
+        color: #fff;
+        font-size: 18px;
         font-weight: 600;
         transition: all 0.1s ease-out;
       }
@@ -50,18 +51,31 @@ export default class Button extends Component {
         padding: 0;
         background-color: unset;
         transition: all 0.1s ease-out;
+        color: #000;
         line-height: 1.2;
         --ripple-color: transparent;
+
         &:hover {
-          opacity: 0.9;
           background-color: unset;
         }
         &:active {
+          opacity: 0.9;
           background-color: unset;
         }
       }
       .theme-button-link&::part(native)::after {
         content: none;
+      }
+
+      ${theme === "fab" ? "flex-shrink: 0; height: 70px; width: 70px;" : ""}
+      .theme-button-fab&::part(native) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border-radius: 50%;
+        background-color: var(--dt-primary);
+        color: #fff;
       }
     `
 
@@ -75,7 +89,7 @@ export default class Button extends Component {
         {icon ? (
           <Icon
             name={icon}
-            fill={iconFill ? iconFill : "#a2a2a2"}
+            fill={iconColor ? iconColor : "#fff"}
             height={iconSize ? iconSize : iconHeight ? iconHeight : 24}
             width={iconSize ? iconSize : iconWidth ? iconWidth : 24}
             size={iconSize ? iconSize : 24}

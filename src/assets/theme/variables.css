@@ -2,12 +2,18 @@
   /** Drifter CSS Variables **/
 
   /* Padding */
-  --dt-page-padding: 38px;
+  --dt-page-padding: 22px;
+  --dt-page-background: #fff;
 
   /* Colors */
-  --dt-background: #f3f3f3;
+  --dt-border: #d1d0e3;
 
-  --dt-primary: #4d4960;
+  --dt-primary: #353355;
+  --dt-pink: #b12083;
+  --dt-purple: #6561a1;
+  --dt-purple-2: #d1d0e3;
+  --dt-purple-3: #edecf4;
+
   --dt-dark: #3e3e3e;
 
   --ion-color-step-50: #0d0d0d;

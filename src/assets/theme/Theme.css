@@ -1,23 +1,7 @@
 ::part(background) {
-  --background: var(--dt-background);
+  --background: var(--dt-page-background);
 }
 
-.Onboarding {
-  height: 100%;
-}
-
-.Onboarding::part(scroll) {
-  padding: 24px 0;
-}
-
-.OnboardingWrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  max-width: 284px;
-  margin: 0 auto;
-}
-
-.noIcon::part(icon) {
+.no-icon::part(icon) {
   display: none;
 }

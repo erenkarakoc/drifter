@@ -1,0 +1,38 @@
+.Landing {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  max-width: 330px;
+  margin: auto;
+}
+
+.LandingWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 667px;
+  height: calc(100% - 12vh);
+  width: 100%;
+  margin: auto;
+}
+
+.LandingImage {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 -64px;
+  transform: translateX(-130px);
+}
+.LandingImage svg {
+  position: relative;
+  flex-shrink: 0;
+  right: 47px;
+}
+
+.Landing .theme-button-fab {
+  margin-top: auto;
+  transform: translateX(110px);
+}
+
+.Landing .Logo {
+  margin: 0 0 64px;
+}

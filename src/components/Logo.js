@@ -12,37 +12,41 @@ import { ReactComponent as LogoGradient2 } from "../assets/logo/logo-gradient-2.
 import { ReactComponent as Logotype } from "../assets/logo/logotype.svg"
 import { ReactComponent as LogotypeDark } from "../assets/logo/logotype-dark.svg"
 
-const Logo = ({ type }) => {
+const Logo = ({ type, height, width, ...props }) => {
   const LogoSelected = () => {
     if (type && type === "LogoVertical") {
-      return <LogoVertical />
+      return <LogoVertical style={{ height: height, width: width }} />
     } else if (type === "LogoVerticalDark") {
-      return <LogoVerticalDark />
+      return <LogoVerticalDark style={{ height: height, width: width }} />
     } else if (type === "LogoVerticalGradient") {
-      return <LogoVerticalGradient />
+      return <LogoVerticalGradient style={{ height: height, width: width }} />
     } else if (type === "Mono") {
-      return <Mono />
+      return <Mono style={{ height: height, width: width }} />
     } else if (type === "MonoDark") {
-      return <MonoDark />
+      return <MonoDark style={{ height: height, width: width }} />
     } else if (type === "MonoGradient") {
-      return <MonoGradient />
+      return <MonoGradient style={{ height: height, width: width }} />
     } else if (type === "LogoDark") {
-      return <LogoDark />
+      return <LogoDark style={{ height: height, width: width }} />
     } else if (type === "LogoGradient") {
-      return <LogoGradient />
+      return <LogoGradient style={{ height: height, width: width }} />
     } else if (type === "LogoGradient2") {
-      return <LogoGradient2 />
+      return <LogoGradient2 style={{ height: height, width: width }} />
     } else if (type === "Logotype") {
-      return <Logotype />
+      return <Logotype style={{ height: height, width: width }} />
     } else if (type === "LogotypeDark") {
-      return <LogotypeDark />
+      return <LogotypeDark style={{ height: height, width: width }} />
     } else {
-      return <LogoLight />
+      return <LogoLight style={{ height: height, width: width }} />
     }
   }
 
   return (
-    <div className="Logo">
+    <div
+      className="Logo"
+      style={{ height: height + "px", width: width + "px" }}
+      {...props}
+    >
       <LogoSelected />
     </div>
   )
