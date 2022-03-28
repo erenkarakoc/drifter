@@ -7,6 +7,9 @@ import { IonReactRouter } from "@ionic/react-router"
 import Materials from "./pages/Materials"
 import Landing from "./pages/Landing"
 import EnterPhoneNumber from "./pages/EnterPhoneNumber"
+import EnterSMSCode from "./pages/EnterSMSCode"
+
+import Home from "./pages/Home"
 
 // Core CSS required for Ionic components to work properly
 import "@ionic/react/css/core.css"
@@ -51,6 +54,14 @@ const App = () => {
           </Route>
           <Route exact path="/enter-phone-number">
             <EnterPhoneNumber />
+          </Route>
+          <Route exact path="/enter-sms-code">
+            <EnterSMSCode />
+          </Route>
+
+          {/* Home */}
+          <Route exact path="/home">
+            <Home />
           </Route>
 
           {/* Not Found */}

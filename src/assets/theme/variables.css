@@ -7,12 +7,14 @@
 
   /* Colors */
   --dt-border: #d1d0e3;
+  --dt-border-light: #cdd4d9;
 
   --dt-primary: #353355;
   --dt-pink: #b12083;
   --dt-purple: #6561a1;
   --dt-purple-2: #d1d0e3;
   --dt-purple-3: #edecf4;
+  --dt-link: #79778e;
 
   --dt-success: #48d04c;
   --dt-error: #ee3c24;

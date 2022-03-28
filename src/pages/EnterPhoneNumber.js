@@ -1,4 +1,15 @@
-import { IonPage, IonContent, useIonRouter } from "@ionic/react"
+// Ionic & React
+import { useState } from "react"
+import { IonPage, IonContent, useIonRouter, useIonAlert } from "@ionic/react"
+
+// Redux
+import { useSelector } from "react-redux"
+
+// Plugins
+import {
+  isValidPhoneNumber,
+  formatPhoneNumberIntl,
+} from "react-phone-number-input"
 
 // Components
 import Logo from "./../components/Logo"
@@ -7,7 +18,12 @@ import DTPhoneInput from "../components/DTPhoneInput"
 import Button from "../components/Button"
 
 const EnterPhoneNumber = () => {
+  const [border, setBorder] = useState("")
+
   const router = useIonRouter()
+  const [present] = useIonAlert()
+
+  let { phone } = useSelector((state) => state.userSlice)
 
   return (
     <IonPage>
@@ -18,16 +34,33 @@ const EnterPhoneNumber = () => {
             style={{ paddingTop: "10vh" }}
             onSubmit={(e) => {
               e.preventDefault()
-              router.push("/materials", "forward")
+
+              if (isValidPhoneNumber(phone)) {
+                present({
+                  cssClass: "surePhoneNumber",
+                  message: `Are you sure you typed your number correctly?\n\n<span>${formatPhoneNumberIntl(
+                    phone
+                  )}</span>`,
+                  buttons: [
+                    "No",
+                    {
+                      text: "Yes",
+                      handler: (d) => router.push("/enter-sms-code", "forward"),
+                    },
+                  ],
+                })
+              } else {
+                setBorder("shake")
+              }
             }}
           >
             <Logo height={124} width={116} type="MonoDark" />
 
-            <Text select="none" cssClass="title-2" margin="0 0 45px">
+            <Text select="none" cssClass="title-2" margin="0 0 40px">
               Enter your mobile phone for registration:
             </Text>
 
-            <DTPhoneInput required />
+            <DTPhoneInput border={border} setBorder={setBorder} />
 
             <Button type="submit" theme="primary" margin="56px 0 0">
               Proceed

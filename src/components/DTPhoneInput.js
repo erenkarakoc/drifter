@@ -2,6 +2,15 @@
 import { useState, useEffect, useRef } from "react"
 import { IonContent, IonModal, IonButton, IonList } from "@ionic/react"
 
+// Redux
+import { useDispatch, useSelector } from "react-redux"
+import { setPhone, setCountry } from "../redux/slices/userSlice"
+
+// Plugins
+import styled from "styled-components"
+import ReactCountryFlag from "react-country-flag"
+import countries from "react-phone-number-input/locale/en.json"
+
 // React Phone Number Input
 import "react-phone-number-input/style.css"
 import Input from "react-phone-number-input/input"
@@ -10,12 +19,9 @@ import {
   getCountries,
   isValidPhoneNumber,
 } from "react-phone-number-input"
-import Text from "./Text"
-import countries from "react-phone-number-input/locale/en.json"
 
-// Plugins
-import styled from "styled-components"
-import ReactCountryFlag from "react-country-flag"
+// Components
+import Text from "./Text"
 
 const DTPhoneInputWrapper = styled("div")`
   position: relative;
@@ -120,8 +126,9 @@ const DTCountryCodeList = styled(IonList)`
 const DTCountryCodeItem = styled(IonButton)`
   --margin: 0 !important;
   --padding-top: 14px;
+
   --padding-bottom: 14px;
-  --padding-start: 25%;
+  --padding-start: 15%;
   --opacity: 1;
   --background: transparent;
   --background-hover: transparent;
@@ -146,7 +153,7 @@ const DTCountryCodeItem = styled(IonButton)`
     height: 56px;
     width: 100%;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   span {
@@ -155,7 +162,8 @@ const DTCountryCodeItem = styled(IonButton)`
     align-items: center;
 
     & > span {
-      font-weight: 600;
+      margin-left: 8px;
+      font-weight: 500;
     }
   }
 `
@@ -163,7 +171,7 @@ const DTCountryCodeItem = styled(IonButton)`
 const DTInput = styled(Input)`
   height: 100%;
   width: 100%;
-  padding: 0 14px;
+  padding-left: 14px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -172,29 +180,45 @@ const DTInput = styled(Input)`
   font-weight: 600;
 `
 
-const DTPhoneInput = ({ ...props }) => {
-  const [value, setValue] = useState()
-  const [country, setCountry] = useState("SE")
+const DTPhoneInput = ({ border, setBorder, ...props }) => {
+  const [showModal, setShowModal] = useState(false)
 
-  const [borderColor, setBorderColor] = useState("")
+  const { phone } = useSelector((state) => state.userSlice)
+  const { country } = useSelector((state) => state.userSlice)
+
+  const dispatch = useDispatch()
+
+  const handleChange = (value) => {
+    dispatch(setPhone(value))
+  }
+
+  const handleClick = async (e) => {
+    await dispatch(setPhone(""))
+
+    dispatch(setCountry(e.target.value))
+    checkValid()
+    setShowModal(false)
+    phoneInputRef.current.focus()
+  }
+
   const onFocus = () => {
-    if (value) {
-      if (!isValidPhoneNumber(value)) setBorderColor("focused")
+    if (phone) {
+      if (!isValidPhoneNumber(phone)) setBorder("focused")
     }
   }
   const onBlur = () => {
-    if (value) {
-      if (!isValidPhoneNumber(value)) setBorderColor("")
+    if (phone) {
+      if (!isValidPhoneNumber(phone)) setBorder("")
     }
     checkValid()
   }
 
   const checkValid = () => {
-    if (value) {
-      if (isValidPhoneNumber(value)) setBorderColor("success")
-      else setBorderColor("error")
+    if (phone) {
+      if (isValidPhoneNumber(phone)) setBorder("success")
+      else setBorder("error")
     } else {
-      setBorderColor("")
+      setBorder("")
     }
   }
 
@@ -205,11 +229,9 @@ const DTPhoneInput = ({ ...props }) => {
     })
   }, [])
 
-  const [showModal, setShowModal] = useState(false)
-
   return (
     <>
-      <DTPhoneInputWrapper className={borderColor ? borderColor : ""}>
+      <DTPhoneInputWrapper className={border ? border : ""}>
         <DTToggleModal onClick={() => setShowModal(!showModal)}>
           <ReactCountryFlag
             countryCode={country}
@@ -231,9 +253,9 @@ const DTPhoneInput = ({ ...props }) => {
           +{getCountryCallingCode(country)}
         </Text>
         <DTInput
-          value={value}
+          value={phone}
           country={country}
-          onChange={setValue}
+          onChange={handleChange}
           ref={phoneInputRef}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -256,11 +278,7 @@ const DTPhoneInput = ({ ...props }) => {
                 <DTCountryCodeItem
                   key={country}
                   value={country}
-                  onClick={(e) => {
-                    setCountry(e.target.value)
-                    setShowModal(false)
-                    phoneInputRef.current.focus()
-                  }}
+                  onClick={handleClick}
                 >
                   <ReactCountryFlag
                     countryCode={country}
@@ -281,13 +299,12 @@ const DTPhoneInput = ({ ...props }) => {
                       textAlign: "left",
                     }}
                   >
-                    +<span>{getCountryCallingCode(country)}</span>
-                    &nbsp;&nbsp;
                     {Object.keys(countries)
                       .filter((key) => key.includes(country))
                       .reduce((cur, key) => {
                         return countries[key]
                       }, {})}
+                    <span>+{getCountryCallingCode(country)}</span>
                   </span>
                 </DTCountryCodeItem>
               ))}

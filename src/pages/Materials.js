@@ -41,6 +41,9 @@ const Materials = () => {
               <Button routerLink="/enter-phone-number" theme="link">
                 Enter Phone Number
               </Button>
+              <Button routerLink="/enter-sms-code" theme="link">
+                Enter SMS Code
+              </Button>
             </div>
 
             <h1>Logos</h1>
@@ -188,7 +191,7 @@ const Materials = () => {
               <Input placeholder="Input"></Input>
               <Input
                 className="ion-margin-top icon-left"
-                borderColor="var(--dt-blue)"
+                border="var(--dt-blue)"
                 placeholder="Input Secondary"
                 icon="google"
                 iconSize={22}

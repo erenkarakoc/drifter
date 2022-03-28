@@ -16,6 +16,10 @@ export default class Button extends Component {
       iconSize,
       iconHeight,
       iconWidth,
+      iconLeft,
+      color,
+      fontSize,
+      fontWeight,
       className,
       ...buttonProps
     } = this.props
@@ -55,8 +59,10 @@ export default class Button extends Component {
         padding: 0;
         background-color: unset;
         transition: all 0.1s ease-out;
-        color: #000;
-        line-height: 1.2;
+        color: var(--dt-link);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
         --ripple-color: transparent;
 
         &:hover {
@@ -70,8 +76,13 @@ export default class Button extends Component {
       .theme-button-link&::part(native)::after {
         content: none;
       }
+      &.theme-button-link .icon {
+        ${iconLeft ? "margin-right: 4px;" : "margin-left: 4px;"}
+      }
 
-      ${theme === "fab" ? "flex-shrink: 0; height: 70px; width: 70px;" : ""}
+      ${theme === "fab"
+        ? "flex-shrink: 0; height: 70px; width: 70px; border-radius: 50%;"
+        : ""}
       .theme-button-fab&::part(native) {
         display: flex;
         justify-content: center;
@@ -80,6 +91,12 @@ export default class Button extends Component {
         border-radius: 50%;
         background-color: var(--dt-primary);
         color: #fff;
+      }
+
+      &::part(native) {
+        ${color ? "color: " + color + " !important;" : ""}
+        ${fontSize ? "font-size: " + fontSize + " !important;" : ""}
+        ${fontWeight ? "font-weight: " + fontWeight + " !important;" : ""}
       }
     `
 
@@ -90,7 +107,7 @@ export default class Button extends Component {
         } ${className ? className : ""}`}
         {...buttonProps}
       >
-        {icon ? (
+        {icon && iconLeft ? (
           <Icon
             name={icon}
             fill={iconColor ? iconColor : "#fff"}
@@ -102,6 +119,17 @@ export default class Button extends Component {
           ""
         )}
         {children}
+        {icon && !iconLeft ? (
+          <Icon
+            name={icon}
+            fill={iconColor ? iconColor : "#fff"}
+            height={iconSize ? iconSize : iconHeight ? iconHeight : 24}
+            width={iconSize ? iconSize : iconWidth ? iconWidth : 24}
+            size={iconSize ? iconSize : 24}
+          />
+        ) : (
+          ""
+        )}
       </DTButton>
     )
   }

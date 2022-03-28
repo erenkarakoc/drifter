@@ -12,7 +12,9 @@ export default class Input extends Component {
       iconSize,
       iconHeight,
       iconWidth,
+      label,
       theme,
+      cssClass,
       ...inputProps
     } = this.props
 
@@ -20,19 +22,26 @@ export default class Input extends Component {
       flex-shrink: 0;
       flex-grow: 0;
       max-width: 300px;
+      font-family: "Montserrat", sans-serif;
 
       .native-input {
         position: relative;
-        height: 50px;
+        ${theme === "large" ? "height: 66px;" : "height: 50px;"}
         width: 100%;
-
+        padding: ${theme === "large" ? "0 20px" : "15px 0"};
+        border: 1px solid var(--dt-border-light);
+        border-radius: ${theme === "large" ? "8px" : "4px"};
         background-color: transparent;
-        font-size: 16px;
+        color: #000;
+        font-size: ${theme === "large" ? "17px" : "15px"};
         font-weight: 400;
         transition: all 0.1s ease-out;
 
         &::placeholder {
-          color: var(--dt-black-4);
+          color: #999;
+        }
+        &:focus {
+          border-color: var(--dt-purple);
         }
       }
 
@@ -53,11 +62,33 @@ export default class Input extends Component {
         left: 16px;
         right: unset;
       }
+
+      .DTLargeInputLabel {
+        pointer-events: none;
+        user-select: none;
+        position: absolute;
+        top: 0;
+        left: 16px;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        padding: 0 3.5px;
+        background-color: #fff;
+        color: var(--dt-purple);
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        z-index: 1;
+        transition: all 0.1s ease-out;
+      }
     `
 
     return (
       <>
-        <DTInput {...inputProps}>
+        <DTInput className={cssClass ? cssClass : ""} {...inputProps}>
           {icon ? (
             <Icon
               name={icon}
@@ -66,6 +97,17 @@ export default class Input extends Component {
               height={iconSize ? iconSize : iconHeight ? iconHeight : 24}
               width={iconSize ? iconSize : iconWidth ? iconWidth : 24}
             />
+          ) : (
+            ""
+          )}
+          {label ? (
+            <label
+              className={
+                theme === "large" ? "DTLargeInputLabel" : "DTInputLabel"
+              }
+            >
+              {label}
+            </label>
           ) : (
             ""
           )}

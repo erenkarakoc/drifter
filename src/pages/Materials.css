@@ -24,10 +24,8 @@
 }
 
 .MaterialsPages {
+  grid-column-gap: 12px;
   margin-left: 0 !important;
-}
-.MaterialsPages .theme-button-link:not(:first-of-type) {
-  margin-left: 12px;
 }
 
 .MaterialsLogos {

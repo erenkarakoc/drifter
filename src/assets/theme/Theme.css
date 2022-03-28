@@ -8,6 +8,32 @@ body,
   display: none;
 }
 
+.surePhoneNumber {
+  text-align: center;
+}
+.surePhoneNumber .alert-message {
+  display: flex;
+  flex-direction: column;
+}
+.surePhoneNumber .alert-message span {
+  margin-top: 12px;
+}
+
+.EnterSixDigitInput {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.EnterSixDigitInput .native-input {
+  max-width: 100% !important;
+  width: 100% !important;
+  caret-color: #bdbcd4;
+  color: var(--dt-primary) !important;
+  font-size: 28px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+}
+
+/* ANIMATIONS */
 #splashLogo {
   clip-path: inset(100% 0 0 0);
   animation: splashLogoAnimation 1s ease-out forwards;
@@ -18,5 +44,32 @@ body,
   }
   100% {
     clip-path: inset(0% 0 0 0);
+  }
+}
+
+.shake {
+  animation: shakeAnimation 150ms 2 linear;
+}
+@keyframes shakeAnimation {
+  0% {
+    transform: translate(3px, 0);
+  }
+  50% {
+    transform: translate(-3px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.spin {
+  animation: spinAnimation 1s linear infinite;
+}
+@keyframes spinAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
