@@ -13,16 +13,26 @@ const EnterPhoneNumber = () => {
     <IonPage>
       <IonContent scrollEvents={false}>
         <div className="Landing">
-          <div className="LandingWrapper" style={{ paddingTop: "10vh" }}>
+          <form
+            className="LandingWrapper"
+            style={{ paddingTop: "10vh" }}
+            onSubmit={(e) => {
+              e.preventDefault()
+              router.push("/materials", "forward")
+            }}
+          >
             <Logo height={124} width={116} type="MonoDark" />
+
             <Text select="none" cssClass="title-2" margin="0 0 45px">
               Enter your mobile phone for registration:
             </Text>
-            <DTPhoneInput />
-            <Button theme="primary" margin="56px 0 0" routerLink="/materials">
+
+            <DTPhoneInput required />
+
+            <Button type="submit" theme="primary" margin="56px 0 0">
               Proceed
             </Button>
-          </div>
+          </form>
         </div>
       </IonContent>
     </IonPage>

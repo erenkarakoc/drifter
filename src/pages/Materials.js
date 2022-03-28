@@ -49,7 +49,7 @@ const Materials = () => {
               <p>Vertical</p>
               <div>
                 <Logo type="LogoVertical" />
-                <Logo type="LogoVerticalDark" />
+                <Logo type="LogoVerticalDark" id="splashLogo" />
                 <Logo type="LogoVerticalGradient" />
               </div>
               <p>Horizontal</p>
@@ -205,8 +205,6 @@ const Materials = () => {
                 iconSize={24}
               ></Input>
             </div>
-
-            <Logo type="MonoDark" id="splashLogo" />
           </div>
         </div>
 

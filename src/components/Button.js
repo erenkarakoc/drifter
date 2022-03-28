@@ -16,6 +16,7 @@ export default class Button extends Component {
       iconSize,
       iconHeight,
       iconWidth,
+      className,
       ...buttonProps
     } = this.props
 
@@ -46,8 +47,11 @@ export default class Button extends Component {
         transition: all 0.1s ease-out;
       }
 
-      ${theme === "link" ? "height: fit-content; width: fit-content;" : ""}
+      ${theme === "link"
+        ? "height: fit-content; width: fit-content !important;"
+        : ""}
       .theme-button-link&::part(native) {
+        width: fit-content;
         padding: 0;
         background-color: unset;
         transition: all 0.1s ease-out;
@@ -83,7 +87,7 @@ export default class Button extends Component {
       <DTButton
         className={`${
           theme ? " theme-button-" + theme : "theme-button-primary"
-        }`}
+        } ${className ? className : ""}`}
         {...buttonProps}
       >
         {icon ? (

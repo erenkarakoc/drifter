@@ -1,25 +1,76 @@
 // Ionic & React
-import { Component, useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { IonContent, IonModal, IonButton, IonList } from "@ionic/react"
-
-import PropTypes from "prop-types"
 
 // React Phone Number Input
 import "react-phone-number-input/style.css"
 import Input from "react-phone-number-input/input"
-import { getCountryCallingCode, getCountries } from "react-phone-number-input"
+import {
+  getCountryCallingCode,
+  getCountries,
+  isValidPhoneNumber,
+} from "react-phone-number-input"
 import Text from "./Text"
+import countries from "react-phone-number-input/locale/en.json"
 
 // Plugins
 import styled from "styled-components"
 import ReactCountryFlag from "react-country-flag"
 
 const DTPhoneInputWrapper = styled("div")`
+  position: relative;
   display: flex;
   height: 42px;
   width: 100%;
   padding: 0 14px;
   border-bottom: 1px solid var(--dt-border);
+  transition: all 0.3s ease-out;
+
+  &.focused,
+  &.success,
+  &.error,
+  &.warning,
+  &.info {
+    border-color: transparent;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    opacity: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--dt-border);
+    transition: all 0.3s ease-out;
+  }
+  &.focused:after {
+    opacity: 1;
+    width: 100%;
+    background-color: #b2b2b2;
+  }
+  &.success:after {
+    opacity: 1;
+    width: 100%;
+    background-color: var(--dt-success);
+  }
+  &.error:after {
+    opacity: 1;
+    width: 100%;
+    background-color: var(--dt-error);
+  }
+  &.warning:after {
+    opacity: 1;
+    width: 100%;
+    background-color: var(--dt-warning);
+  }
+  &.info:after {
+    opacity: 1;
+    width: 100%;
+    background-color: var(--dt-warning);
+  }
 `
 
 const DTToggleModal = styled(IonButton)`
@@ -70,21 +121,22 @@ const DTCountryCodeItem = styled(IonButton)`
   --margin: 0 !important;
   --padding-top: 14px;
   --padding-bottom: 14px;
-  --padding-start: 33%;
-  --padding-end: 33%;
+  --padding-start: 25%;
   --opacity: 1;
   --background: transparent;
   --background-hover: transparent;
   --background-focused: transparent;
   --background-activated: transparent;
   --box-shadow: none;
-  --color: var(--dt-dark);
+  --color: #1f1f1f;
   --border-radius: 0;
   --ripple-color: transparent;
 
   height: 56px;
   width: 100%;
   margin: 0;
+  letter-spacing: 0;
+  text-transform: unset;
 
   &:not(:first-of-type) {
     border-top: 1px solid #ddd;
@@ -93,15 +145,18 @@ const DTCountryCodeItem = styled(IonButton)`
   &::part(native) {
     height: 56px;
     width: 100%;
-    color: var(--dt-dark);
-    font-size: 24px;
-    font-weight: 300;
+    font-size: 18px;
+    font-weight: 500;
   }
 
   span {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    & > span {
+      font-weight: 600;
+    }
   }
 `
 
@@ -117,14 +172,36 @@ const DTInput = styled(Input)`
   font-weight: 600;
 `
 
-const DTPhoneInput = () => {
+const DTPhoneInput = ({ ...props }) => {
   const [value, setValue] = useState()
   const [country, setCountry] = useState("SE")
 
-  const phoneInput = useRef(null)
+  const [borderColor, setBorderColor] = useState("")
+  const onFocus = () => {
+    if (value) {
+      if (!isValidPhoneNumber(value)) setBorderColor("focused")
+    }
+  }
+  const onBlur = () => {
+    if (value) {
+      if (!isValidPhoneNumber(value)) setBorderColor("")
+    }
+    checkValid()
+  }
+
+  const checkValid = () => {
+    if (value) {
+      if (isValidPhoneNumber(value)) setBorderColor("success")
+      else setBorderColor("error")
+    } else {
+      setBorderColor("")
+    }
+  }
+
+  const phoneInputRef = useRef(null)
   useEffect(() => {
     setTimeout(() => {
-      phoneInput.current.focus()
+      phoneInputRef.current.focus()
     })
   }, [])
 
@@ -132,11 +209,12 @@ const DTPhoneInput = () => {
 
   return (
     <>
-      <DTPhoneInputWrapper>
-        <DTToggleModal onClick={() => setShowModal(true)}>
+      <DTPhoneInputWrapper className={borderColor ? borderColor : ""}>
+        <DTToggleModal onClick={() => setShowModal(!showModal)}>
           <ReactCountryFlag
             countryCode={country}
             style={{
+              pointerEvents: "none",
               width: "34px",
               height: "auto",
               objectFit: "contain",
@@ -156,15 +234,21 @@ const DTPhoneInput = () => {
           value={value}
           country={country}
           onChange={setValue}
-          ref={phoneInput}
+          ref={phoneInputRef}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onKeyUp={checkValid}
+          onKeyDown={checkValid}
           autoFocus
+          {...props}
         />
 
-        {/* Modal */}
+        {/* Country Codes Modal */}
         <IonModal
           isOpen={showModal}
-          breakpoints={[0.85, 1]}
+          breakPoints={[0.1, 0.85, 1]}
           initialBreakpoint={0.85}
+          swipeToClose={true}
         >
           <IonContent>
             <DTCountryCodeList>
@@ -175,6 +259,7 @@ const DTPhoneInput = () => {
                   onClick={(e) => {
                     setCountry(e.target.value)
                     setShowModal(false)
+                    phoneInputRef.current.focus()
                   }}
                 >
                   <ReactCountryFlag
@@ -183,12 +268,27 @@ const DTPhoneInput = () => {
                       pointerEvents: "none",
                       width: "34px",
                       height: "auto",
+                      marginRight: "12px",
                       objectFit: "contain",
                       borderRadius: "2px",
                     }}
                     svg
                   />
-                  {[country]} +{getCountryCallingCode(country)}
+                  <span
+                    style={{
+                      pointerEvents: "none",
+                      marginRight: "auto",
+                      textAlign: "left",
+                    }}
+                  >
+                    +<span>{getCountryCallingCode(country)}</span>
+                    &nbsp;&nbsp;
+                    {Object.keys(countries)
+                      .filter((key) => key.includes(country))
+                      .reduce((cur, key) => {
+                        return countries[key]
+                      }, {})}
+                  </span>
                 </DTCountryCodeItem>
               ))}
             </DTCountryCodeList>

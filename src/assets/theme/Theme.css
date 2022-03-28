@@ -1,7 +1,22 @@
+body,
 ::part(background) {
   --background: var(--dt-page-background);
+  background: var(--dt-page-background);
 }
 
 .no-icon::part(icon) {
   display: none;
+}
+
+#splashLogo {
+  clip-path: inset(100% 0 0 0);
+  animation: splashLogoAnimation 1s ease-out forwards;
+}
+@keyframes splashLogoAnimation {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(0% 0 0 0);
+  }
 }

@@ -68,17 +68,3 @@
 .MaterialsButtons ion-button {
   width: 100%;
 }
-
-#splashLogo {
-  position: absolute;
-  clip-path: inset(100% 0 0 0);
-  animation: splashLogoAnimation 1s ease-out forwards;
-}
-@keyframes splashLogoAnimation {
-  0% {
-    clip-path: inset(100% 0 0 0);
-  }
-  100% {
-    clip-path: inset(0% 0 0 0);
-  }
-}
