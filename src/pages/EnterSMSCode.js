@@ -49,7 +49,7 @@ const EnterSMSCode = () => {
       .querySelector("input")
 
     if (input.value === pendingCode) {
-      router.push("/materials", "forward")
+      router.push("/home", "forward")
     } else if (input.value.length < 6) {
       setBorder("shake error")
       input.focus()
