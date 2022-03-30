@@ -35,7 +35,10 @@ const Landing = () => {
     <IonPage>
       <IonContent scrollEvents={false}>
         <div className="Landing">
-          <div className="LandingWrapper">
+          <div
+            className="LandingWrapper"
+            style={{ paddingTop: 0, paddingBottom: 0 }}
+          >
             <div className="LandingImage">
               <LandingImage />
             </div>
