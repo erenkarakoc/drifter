@@ -124,7 +124,6 @@ const DTToggleModal = styled(IonButton)`
 const DTCountryCodeList = styled(IonList)`
   display: flex;
   flex-direction: column;
-  height: 100%;
   background-color: #fff;
 `
 

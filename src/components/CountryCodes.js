@@ -48,10 +48,9 @@ const DTCountryCodeItem = styled(IonButton)`
     font-weight: 600;
     white-space: break-spaces;
     transition: all 0.15s ease-out;
-
-    &:active {
-      transform: scale(0.98);
-    }
+  }
+  &:not([isSkeleton="true"])::part(native):active {
+    transform: scale(0.98);
   }
 
   &[aria-current="true"] {
@@ -71,13 +70,19 @@ const DTCountryCodeItem = styled(IonButton)`
       font-weight: 500;
     }
   }
+
+  img,
+  svg,
+  & > span {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
 `
 
-const CountryCodes = (currentCountry, handleClick) => {
+const CountryCodes = ({ currentCountry, handleClick }) => {
   const [countries, setCountries] = useState([])
 
   const CountryCodesSkeleton = (props) => (
-    <DTCountryCodeItem onClick={false}>
+    <DTCountryCodeItem onClick={false} isSkeleton={true}>
       <ContentLoader
         speed={0.4}
         height={30}
@@ -96,7 +101,7 @@ const CountryCodes = (currentCountry, handleClick) => {
   )
 
   useEffect(() => {
-    const timer = setTimeout(setCountries, 200, getCountries())
+    const timer = setTimeout(setCountries, 100, getCountries())
     return () => {
       clearTimeout(timer)
     }
