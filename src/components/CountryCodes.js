@@ -74,10 +74,6 @@ const DTCountryCodeItem = styled(IonButton)`
 `
 
 export default class CountryCodes extends Component {
-  componentDidMount() {
-    console.log("componentDidMount")
-  }
-
   render() {
     const { currentCountry, countries, handleClick } = this.props
 

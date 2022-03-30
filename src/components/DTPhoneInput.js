@@ -219,7 +219,7 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
 
   const countriesRef = useRefWithCallback(
     (node) => {
-      console.log("mount")
+      console.log("mounted")
     },
     (node) => {}
   )

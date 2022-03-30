@@ -43,7 +43,7 @@ const EnterSMSCode = () => {
       .replace(/(\..*)\./g, "$1")
 
     setBorder("")
-    if (e.target.value === 6) handleSubmit(e)
+    if (e.target.value.length === 6) handleSubmit(e)
   }
 
   const pendingCode = "123456"
@@ -54,8 +54,6 @@ const EnterSMSCode = () => {
     const input = document
       .getElementById(SMSInputRef.current.props.id)
       .querySelector("input")
-
-    console.log(SMSInputRef)
 
     if (input.value === pendingCode) {
       router.push("/home", "forward")
