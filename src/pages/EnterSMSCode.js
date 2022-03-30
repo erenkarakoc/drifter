@@ -48,7 +48,7 @@ const EnterSMSCode = () => {
 
   const pendingCode = "123456"
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const input = document
@@ -60,7 +60,6 @@ const EnterSMSCode = () => {
     } else if (input.value.length < 6) {
       setBorder("shake error")
       input.focus()
-
       return
     } else if (input.value !== pendingCode) {
       setBorder("shake error")

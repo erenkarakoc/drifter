@@ -12,10 +12,7 @@ import ReactCountryFlag from "react-country-flag"
 
 // React Phone Number Input
 import "react-phone-number-input/style.css"
-import PhoneInput, {
-  getCountries,
-  isValidPhoneNumber,
-} from "react-phone-number-input"
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input"
 import { AsYouType } from "libphonenumber-js"
 
 // Components
@@ -127,6 +124,7 @@ const DTToggleModal = styled(IonButton)`
 const DTCountryCodeList = styled(IonList)`
   display: flex;
   flex-direction: column;
+  height: 100%;
   background-color: #fff;
 `
 
@@ -269,7 +267,6 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
             <DTCountryCodeList>
               <CountryCodes
                 currentCountry={country}
-                countries={getCountries()}
                 handleClick={handleClick}
                 ref={countriesRef}
               />

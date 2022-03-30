@@ -1,10 +1,10 @@
 // Ionic & React
-import { Component } from "react"
+import { useEffect, useState } from "react"
 import { IonButton } from "@ionic/react"
 
 // Plugins
 import styled from "styled-components"
-import { getCountryCallingCode } from "react-phone-number-input"
+import { getCountryCallingCode, getCountries } from "react-phone-number-input"
 import countryNames from "react-phone-number-input/locale/en.json"
 import ReactCountryFlag from "react-country-flag"
 import ContentLoader from "react-content-loader"
@@ -73,63 +73,68 @@ const DTCountryCodeItem = styled(IonButton)`
   }
 `
 
-export default class CountryCodes extends Component {
-  render() {
-    const { currentCountry, countries, handleClick } = this.props
+const CountryCodes = (currentCountry, handleClick) => {
+  const [countries, setCountries] = useState([])
 
-    const CountryCodesSkeleton = (props) => (
-      <DTCountryCodeItem onClick={false}>
-        <ContentLoader
-          speed={2}
-          height={30}
-          viewBox="0 0 300 30"
-          backgroundColor="#f6f6f3"
-          foregroundColor="#f0efef"
-          gradientRatio={2}
-          preserveAspectRatio="none"
-          style={{ width: "100%" }}
-          {...props}
+  const CountryCodesSkeleton = (props) => (
+    <DTCountryCodeItem onClick={false}>
+      <ContentLoader
+        speed={0.4}
+        height={30}
+        viewBox="0 0 300 30"
+        backgroundColor="#f6f6f3"
+        foregroundColor="#fff"
+        gradientRatio={2}
+        preserveAspectRatio="none"
+        style={{ width: "100%" }}
+        {...props}
+      >
+        <rect x="0" y="0" rx="3" ry="3" width="40" height="30" />
+        <rect x="52" y="8" rx="7" ry="7" width="248" height="14" />
+      </ContentLoader>
+    </DTCountryCodeItem>
+  )
+
+  useEffect(() => {
+    const timer = setTimeout(setCountries, 200, getCountries())
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
+
+  return countries.length === 0
+    ? Array(10).fill(<CountryCodesSkeleton />)
+    : countries.map((country) => (
+        <DTCountryCodeItem
+          key={country}
+          value={country}
+          onClick={handleClick}
+          ariaCurrent={country === currentCountry ? true : false}
         >
-          <rect x="0" y="0" rx="3" ry="3" width="40" height="30" />
-          <rect x="52" y="8" rx="7" ry="7" width="248" height="14" />
-        </ContentLoader>
-      </DTCountryCodeItem>
-    )
-
-    return (
-      <>
-        {countries.map((country) => (
-          <DTCountryCodeItem
-            key={country}
-            value={country}
-            onClick={handleClick}
-            ariaCurrent={country === currentCountry ? true : false}
+          <ReactCountryFlag
+            countryCode={country}
+            style={{
+              pointerEvents: "none",
+              width: "40px",
+              height: "auto",
+              marginRight: "12px",
+              objectFit: "contain",
+              borderRadius: "3px",
+            }}
+            svg
+          />
+          <span
+            style={{
+              pointerEvents: "none",
+              marginRight: "auto",
+              textAlign: "left",
+            }}
           >
-            <ReactCountryFlag
-              countryCode={country}
-              style={{
-                pointerEvents: "none",
-                width: "40px",
-                height: "auto",
-                marginRight: "12px",
-                objectFit: "contain",
-                borderRadius: "3px",
-              }}
-              svg
-            />
-            <span
-              style={{
-                pointerEvents: "none",
-                marginRight: "auto",
-                textAlign: "left",
-              }}
-            >
-              {countryNames[country]}
-              <span>+{getCountryCallingCode(country)}</span>
-            </span>
-          </DTCountryCodeItem>
-        ))}
-      </>
-    )
-  }
+            {countryNames[country]}
+            <span>+{getCountryCallingCode(country)}</span>
+          </span>
+        </DTCountryCodeItem>
+      ))
 }
+
+export default CountryCodes
