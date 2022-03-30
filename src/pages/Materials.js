@@ -1,5 +1,4 @@
 // React & Ionic
-import { useState } from "react"
 import { IonPage, IonContent, useIonAlert } from "@ionic/react"
 
 //======================
@@ -14,15 +13,11 @@ import Button from "../components/Button"
 import Input from "../components/Input"
 import Text from "../components/Text"
 import Icon from "../components/Icon"
-import TestModal from "../components/TestModal"
 
 const Materials = () => {
   const handleButtonClick = (e) => {
     alert(e.target.innerText)
   }
-
-  // Modal
-  const [isTestModalOpen, setTestModalOpen] = useState(false)
 
   // IonAlert
   const [present] = useIonAlert()
@@ -144,22 +139,10 @@ const Materials = () => {
               <Button onClick={handleButtonClick} className="ion-margin-top">
                 Button primary
               </Button>
-              <Button
-                theme="rounded"
-                className="ion-margin-top"
-                onClick={() => {
-                  setTestModalOpen(true)
-                }}
-              >
+              <Button theme="rounded" className="ion-margin-top">
                 Button rounded
               </Button>
-              <Button
-                theme="rounded"
-                className="ion-margin-top"
-                onClick={() => {
-                  setTestModalOpen(true)
-                }}
-              >
+              <Button theme="rounded" className="ion-margin-top">
                 Button rounded & ghosted
               </Button>
               <Button
@@ -210,11 +193,6 @@ const Materials = () => {
             </div>
           </div>
         </div>
-
-        <TestModal
-          isOpen={isTestModalOpen}
-          setTestModalOpen={setTestModalOpen}
-        />
       </IonContent>
     </IonPage>
   )

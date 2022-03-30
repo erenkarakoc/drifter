@@ -1,8 +1,11 @@
+// Ionic & React
 import { Component } from "react"
 import { IonButton } from "@ionic/react"
 
+// Plugins
 import styled from "styled-components"
 
+// Components
 import Icon from "./Icon"
 
 export default class Button extends Component {

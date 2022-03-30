@@ -25,7 +25,7 @@ const EnterSMSCode = () => {
   const router = useIonRouter()
   const dispatch = useDispatch()
 
-  const { phone, SMSCode } = useSelector((state) => state.userSlice)
+  const { phone } = useSelector((state) => state.userSlice)
 
   const SMSInputRef = useRef(null)
   useEffect(() => {
@@ -37,26 +37,19 @@ const EnterSMSCode = () => {
     })
   }, [])
 
-  const handleChange = (e) => {
-    e.target.value = e.target.value
-      .replace(/[^0-9.]/g, "")
-      .replace(/(\..*)\./g, "$1")
-
-    setBorder("")
-    if (e.target.value.length === 6) handleSubmit(e)
-  }
-
   const pendingCode = "123456"
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
+
+    console.log(e)
 
     const input = document
       .getElementById(SMSInputRef.current.props.id)
       .querySelector("input")
 
     if (input.value === pendingCode) {
-      router.push("/home", "forward")
+      router.push("/materials", "forward")
     } else if (input.value.length < 6) {
       setBorder("shake error")
       input.focus()
@@ -109,7 +102,8 @@ const EnterSMSCode = () => {
 
             <SMSCodeInput
               border={border}
-              handleChange={handleChange}
+              setBorder={setBorder}
+              handleSubmit={handleSubmit}
               SMSInputRef={SMSInputRef}
             />
 

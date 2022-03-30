@@ -1,6 +1,6 @@
 // Ionic & React
 import { useState, useEffect, useRef, useCallback } from "react"
-import { IonContent, IonModal, IonButton, IonList } from "@ionic/react"
+import { IonContent, IonModal, IonButton } from "@ionic/react"
 
 // Redux
 import { useDispatch, useSelector } from "react-redux"
@@ -119,12 +119,6 @@ const DTToggleModal = styled(IonButton)`
     height: 25.5px;
     background-color: #ddd;
   }
-`
-
-const DTCountryCodeList = styled(IonList)`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
 `
 
 const DTInput = styled(PhoneInput)`
@@ -263,13 +257,11 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
           swipeToClose={true}
         >
           <IonContent>
-            <DTCountryCodeList>
-              <CountryCodes
-                currentCountry={country}
-                handleClick={handleClick}
-                ref={countriesRef}
-              />
-            </DTCountryCodeList>
+            <CountryCodes
+              currentCountry={country}
+              handleClick={handleClick}
+              ref={countriesRef}
+            />
           </IonContent>
         </IonModal>
       </DTPhoneInputWrapper>

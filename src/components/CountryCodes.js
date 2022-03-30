@@ -1,6 +1,6 @@
 // Ionic & React
 import { useEffect, useState } from "react"
-import { IonButton } from "@ionic/react"
+import { IonButton, IonList } from "@ionic/react"
 
 // Plugins
 import styled from "styled-components"
@@ -8,6 +8,12 @@ import { getCountryCallingCode, getCountries } from "react-phone-number-input"
 import countryNames from "react-phone-number-input/locale/en.json"
 import ReactCountryFlag from "react-country-flag"
 import ContentLoader from "react-content-loader"
+
+const DTCountryCodeList = styled(IonList)`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+`
 
 const DTCountryCodeItem = styled(IonButton)`
   --margin: 0 !important;
@@ -91,7 +97,7 @@ const CountryCodes = ({ currentCountry, handleClick }) => {
         foregroundColor="#fff"
         gradientRatio={2}
         preserveAspectRatio="none"
-        style={{ width: "100%" }}
+        style={{ maxWidth: "460px", width: "100%", marginRight: "auto" }}
         {...props}
       >
         <rect x="0" y="0" rx="3" ry="3" width="40" height="30" />
@@ -107,9 +113,15 @@ const CountryCodes = ({ currentCountry, handleClick }) => {
     }
   }, [])
 
-  return countries.length === 0
-    ? Array(10).fill(<CountryCodesSkeleton />)
-    : countries.map((country) => (
+  return countries.length === 0 ? (
+    <div
+      style={{ maxHeight: "100%", height: "fit-content", overflow: "hidden" }}
+    >
+      {Array(10).fill(<CountryCodesSkeleton />)}
+    </div>
+  ) : (
+    <DTCountryCodeList>
+      {countries.map((country) => (
         <DTCountryCodeItem
           key={country}
           value={country}
@@ -139,7 +151,9 @@ const CountryCodes = ({ currentCountry, handleClick }) => {
             <span>+{getCountryCallingCode(country)}</span>
           </span>
         </DTCountryCodeItem>
-      ))
+      ))}
+    </DTCountryCodeList>
+  )
 }
 
 export default CountryCodes

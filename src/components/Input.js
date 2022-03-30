@@ -1,10 +1,10 @@
-import { Component, memo } from "react"
+import { PureComponent, memo } from "react"
 import { IonInput } from "@ionic/react"
 
 import styled from "styled-components"
 import Icon from "./Icon"
 
-class Input extends Component {
+class Input extends PureComponent {
   render() {
     const {
       id,
@@ -30,7 +30,7 @@ class Input extends Component {
         position: relative;
         ${theme === "large" ? "height: 66px;" : "height: 50px;"}
         width: 100%;
-        padding: ${theme === "large" ? "0 20px" : "15px 0"};
+        padding: ${theme === "large" ? "0 20px" : "0 15px"};
         border: 1px solid var(--dt-border-light);
         border-radius: ${theme === "large" ? "8px" : "4px"};
         background-color: transparent;
