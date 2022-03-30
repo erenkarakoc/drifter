@@ -16,7 +16,7 @@ const SMSCodeInput = ({
 }) => {
   const { SMSCode } = useSelector((state) => state.userSlice)
 
-  const handleChange = (e) => {
+  const handleInput = (e) => {
     e.target.value = e.target.value
       .replace(/[^0-9.]/g, "")
       .replace(/(\..*)\./g, "$1")
@@ -31,7 +31,7 @@ const SMSCodeInput = ({
       label="Enter the 6-digit code"
       theme="large"
       cssClass={`EnterSixDigitInput ${border ? border : ""}`}
-      onIonChange={handleChange}
+      ionInput={handleInput}
       onIonFocus={() => setBorder("")}
       value={SMSCode}
       inputmode="numeric"

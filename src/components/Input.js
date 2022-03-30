@@ -83,18 +83,18 @@ class Input extends PureComponent {
         pointer-events: none;
         user-select: none;
         position: absolute;
-        top: 50%;
+        top: 0;
         left: 16px;
         transform: translateY(-50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 64px;
+        height: 20px;
         padding: 0 3.5px;
         background-color: #fff;
-        color: var(--dt-link);
+        color: var(--dt-purple);
         font-family: "Montserrat", sans-serif;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
         text-align: center;
         z-index: 1;
@@ -103,14 +103,14 @@ class Input extends PureComponent {
 
       ${theme === "large" ? "caret-color: transparent;" : ""}
 
-      &.has-focus {
+      &:not(.has-focus):not(.has-value) {
         ${theme === "large" ? "caret-color: transparent;" : ""}
 
         .DTLargeInputLabel {
-          top: 0;
-          font-size: 14px;
-          color: var(--dt-purple);
-          height: 20px;
+          top: 50%;
+          color: var(--dt-link);
+          height: 64px;
+          font-size: 16px;
         }
       }
     `

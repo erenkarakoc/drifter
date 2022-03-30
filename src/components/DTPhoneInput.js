@@ -170,6 +170,7 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
       if (!isValidPhoneNumber(phone)) setBorder("focused")
     }
   }
+
   const onBlur = () => {
     if (phone) {
       if (!isValidPhoneNumber(phone)) setBorder("")
