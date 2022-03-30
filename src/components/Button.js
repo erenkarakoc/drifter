@@ -28,6 +28,7 @@ export default class Button extends Component {
       --background-focused: unset;
       --background-activated: unset;
       --background-hover: unset;
+      flex-shrink: 0;
 
       height: 56px;
       ${margin ? "margin: " + margin + ";" : "margin: 0;"}
@@ -35,6 +36,7 @@ export default class Button extends Component {
       letter-spacing: unset;
 
       &::part(native) {
+        flex-shrink: 0;
         background-color: unset;
         border-radius: ${theme === "fab" ? "50%" : "unset"};
         box-shadow: unset;
@@ -59,9 +61,9 @@ export default class Button extends Component {
         padding: 0;
         background-color: unset;
         transition: all 0.1s ease-out;
-        color: var(--dt-link);
-        font-size: 14px;
-        font-weight: 400;
+        color: ${color ? color : "var(--dt-link)"};
+        font-size: ${fontSize ? fontSize : "14px"};
+        font-weight: ${fontWeight ? fontWeight : "500"};
         line-height: 17px;
         --ripple-color: transparent;
 

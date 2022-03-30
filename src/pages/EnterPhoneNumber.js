@@ -2,6 +2,8 @@
 import { useState } from "react"
 import { IonPage, IonContent, useIonRouter, useIonAlert } from "@ionic/react"
 
+import "./Landing.css"
+
 // Redux
 import { useSelector } from "react-redux"
 
@@ -31,7 +33,6 @@ const EnterPhoneNumber = () => {
         <div className="Landing">
           <form
             className="LandingWrapper"
-            style={{ paddingTop: "10vh" }}
             onSubmit={(e) => {
               e.preventDefault()
 

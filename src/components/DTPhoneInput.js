@@ -1,5 +1,5 @@
 // Ionic & React
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { IonContent, IonModal, IonButton, IonList } from "@ionic/react"
 
 // Redux
@@ -9,23 +9,22 @@ import { setPhone, setCountry } from "../redux/slices/userSlice"
 // Plugins
 import styled from "styled-components"
 import ReactCountryFlag from "react-country-flag"
-import countries from "react-phone-number-input/locale/en.json"
 
 // React Phone Number Input
 import "react-phone-number-input/style.css"
-import Input from "react-phone-number-input/input"
-import {
-  getCountryCallingCode,
+import PhoneInput, {
   getCountries,
   isValidPhoneNumber,
 } from "react-phone-number-input"
+import { AsYouType } from "libphonenumber-js"
 
 // Components
-import Text from "./Text"
+import CountryCodes from "./CountryCodes"
 
 const DTPhoneInputWrapper = styled("div")`
   position: relative;
   display: flex;
+  flex-shrink: 0;
   height: 42px;
   width: 100%;
   padding: 0 14px;
@@ -117,78 +116,52 @@ const DTToggleModal = styled(IonButton)`
     width: auto;
     object-fit: contain;
   }
+
+  .flagPlaceholder {
+    width: 34px;
+    height: 25.5px;
+    background-color: #ddd;
+  }
 `
 
 const DTCountryCodeList = styled(IonList)`
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
 `
 
-const DTCountryCodeItem = styled(IonButton)`
-  --margin: 0 !important;
-  --padding-top: 14px;
-
-  --padding-bottom: 14px;
-  --padding-start: 15%;
-  --opacity: 1;
-  --background: transparent;
-  --background-hover: transparent;
-  --background-focused: transparent;
-  --background-activated: transparent;
-  --box-shadow: none;
-  --color: #1f1f1f;
-  --border-radius: 0;
-  --ripple-color: transparent;
-
-  height: 56px;
-  width: 100%;
-  margin: 0;
-  letter-spacing: 0;
-  text-transform: unset;
-
-  &:not(:first-of-type) {
-    border-top: 1px solid #ddd;
+const DTInput = styled(PhoneInput)`
+  .PhoneInputCountry {
+    display: none;
   }
 
-  &::part(native) {
-    height: 56px;
+  input {
+    height: 100%;
     width: 100%;
-    font-size: 18px;
+    padding-left: 14px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--dt-primary);
+    font-size: 24px;
     font-weight: 600;
   }
-
-  span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    & > span {
-      margin-left: 8px;
-      font-weight: 500;
-    }
-  }
-`
-
-const DTInput = styled(Input)`
-  height: 100%;
-  width: 100%;
-  padding-left: 14px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: var(--dt-primary);
-  font-size: 24px;
-  font-weight: 600;
 `
 
 const DTPhoneInput = ({ border, setBorder, ...props }) => {
   const [showModal, setShowModal] = useState(false)
 
-  const { phone } = useSelector((state) => state.userSlice)
-  const { country } = useSelector((state) => state.userSlice)
+  const { phone, country } = useSelector((state) => state.userSlice)
 
   const dispatch = useDispatch()
 
   const handleChange = (value) => {
+    if (value) {
+      const asYouType = new AsYouType()
+      asYouType.input(value.toString())
+      dispatch(setCountry(asYouType.country))
+    }
+
     dispatch(setPhone(value))
   }
 
@@ -229,38 +202,58 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
     })
   }, [])
 
+  function useRefWithCallback(onMount, onUnmount) {
+    const nodeRef = useRef(null)
+
+    const setCountriesRef = useCallback(
+      (node) => {
+        if (nodeRef.current) onUnmount(nodeRef.current)
+        nodeRef.current = node
+        if (nodeRef.current) onMount(nodeRef.current)
+      },
+      [onMount, onUnmount]
+    )
+
+    return setCountriesRef
+  }
+
+  const countriesRef = useRefWithCallback(
+    (node) => {
+      console.log("mount")
+    },
+    (node) => {}
+  )
+
   return (
     <>
       <DTPhoneInputWrapper className={border ? border : ""}>
         <DTToggleModal onClick={() => setShowModal(!showModal)}>
-          <ReactCountryFlag
-            countryCode={country}
-            style={{
-              pointerEvents: "none",
-              width: "34px",
-              height: "auto",
-              objectFit: "contain",
-            }}
-            svg
-          />
+          <div className="flagPlaceholder">
+            <ReactCountryFlag
+              countryCode={country}
+              style={{
+                pointerEvents: "none",
+                width: "34px",
+                height: "auto",
+                objectFit: "contain",
+              }}
+              svg
+            />
+          </div>
         </DTToggleModal>
-        <Text
-          size={24}
-          weight={600}
-          color="var(--dt-primary)"
-          otherStyles="display: flex; align-items: center;"
-        >
-          +{getCountryCallingCode(country)}
-        </Text>
+
         <DTInput
+          international
+          defaultCountry={country}
           value={phone}
-          country={country}
+          withCountryCallingCode
+          countryCallingCodeEditable={true}
           onChange={handleChange}
-          ref={phoneInputRef}
           onFocus={onFocus}
           onBlur={onBlur}
           onKeyUp={checkValid}
           onKeyDown={checkValid}
+          ref={phoneInputRef}
           autoFocus
           {...props}
         />
@@ -274,40 +267,12 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
         >
           <IonContent>
             <DTCountryCodeList>
-              {getCountries().map((country) => (
-                <DTCountryCodeItem
-                  key={country}
-                  value={country}
-                  onClick={handleClick}
-                >
-                  <ReactCountryFlag
-                    countryCode={country}
-                    style={{
-                      pointerEvents: "none",
-                      width: "34px",
-                      height: "auto",
-                      marginRight: "12px",
-                      objectFit: "contain",
-                      borderRadius: "2px",
-                    }}
-                    svg
-                  />
-                  <span
-                    style={{
-                      pointerEvents: "none",
-                      marginRight: "auto",
-                      textAlign: "left",
-                    }}
-                  >
-                    {Object.keys(countries)
-                      .filter((key) => key.includes(country))
-                      .reduce((cur, key) => {
-                        return countries[key]
-                      }, {})}
-                    <span>+{getCountryCallingCode(country)}</span>
-                  </span>
-                </DTCountryCodeItem>
-              ))}
+              <CountryCodes
+                currentCountry={country}
+                countries={getCountries()}
+                handleClick={handleClick}
+                ref={countriesRef}
+              />
             </DTCountryCodeList>
           </IonContent>
         </IonModal>

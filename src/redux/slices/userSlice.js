@@ -5,6 +5,7 @@ export const userSlice = createSlice({
   initialState: {
     phone: "",
     country: "SE",
+    SMSCode: "",
   },
   reducers: {
     setPhone: (state, action) => {
@@ -13,8 +14,11 @@ export const userSlice = createSlice({
     setCountry: (state, action) => {
       state.country = action.payload
     },
+    setSMSCode: (state, action) => {
+      state.SMSCode = action.payload
+    },
   },
 })
 
-export const { setPhone, setCountry } = userSlice.actions
+export const { setPhone, setCountry, setSMSCode } = userSlice.actions
 export default userSlice.reducer

@@ -1,12 +1,13 @@
-import { Component } from "react"
+import { Component, memo } from "react"
 import { IonInput } from "@ionic/react"
 
 import styled from "styled-components"
 import Icon from "./Icon"
 
-export default class Input extends Component {
+class Input extends Component {
   render() {
     const {
+      id,
       icon,
       iconFill,
       iconSize,
@@ -25,6 +26,7 @@ export default class Input extends Component {
       font-family: "Montserrat", sans-serif;
 
       .native-input {
+        flex-shrink: 0;
         position: relative;
         ${theme === "large" ? "height: 66px;" : "height: 50px;"}
         width: 100%;
@@ -86,9 +88,35 @@ export default class Input extends Component {
       }
     `
 
+    function guidGenerator() {
+      var S4 = function () {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+      }
+      return (
+        S4() +
+        S4() +
+        "-" +
+        S4() +
+        "-" +
+        S4() +
+        "-" +
+        S4() +
+        "-" +
+        S4() +
+        S4() +
+        S4()
+      )
+    }
+
+    const ID = guidGenerator()
+
     return (
       <>
-        <DTInput className={cssClass ? cssClass : ""} {...inputProps}>
+        <DTInput
+          id={id ? id : ID}
+          className={cssClass ? cssClass : ""}
+          {...inputProps}
+        >
           {icon ? (
             <Icon
               name={icon}
@@ -102,6 +130,7 @@ export default class Input extends Component {
           )}
           {label ? (
             <label
+              htmlFor={id ? id : ID}
               className={
                 theme === "large" ? "DTLargeInputLabel" : "DTInputLabel"
               }
@@ -116,3 +145,5 @@ export default class Input extends Component {
     )
   }
 }
+
+export default memo(Input)

@@ -1,10 +1,21 @@
-import { Component } from "react"
+import { Component, memo, useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-export default class Spinner extends Component {
+class Spinner extends Component {
   render() {
-    const { size, margin, children, ...props } = this.props
+    const { size, margin, count, onCountEnd, ...props } = this.props
+
+    const Timer = memo(({ count }) => {
+      const [timeLeft, setTimeLeft] = useState(count)
+
+      useEffect(() => {
+        if (timeLeft >= 1) setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
+        else onCountEnd()
+      })
+
+      return <span className="SpinnerTimer">{timeLeft}</span>
+    })
 
     const SpinWrapper = styled("span")`
       position: relative;
@@ -38,7 +49,6 @@ export default class Spinner extends Component {
         width: 100%;
       }
     `
-
     return (
       <SpinWrapper>
         <Spin {...props}>
@@ -69,7 +79,7 @@ export default class Spinner extends Component {
           </svg>
         </Spin>
 
-        <span className="SpinnerTimer">{children}</span>
+        {count ? <Timer count={count} /> : ""}
       </SpinWrapper>
     )
   }
@@ -79,3 +89,5 @@ Spinner.propTypes = {
   size: PropTypes.number.isRequired,
   margin: PropTypes.string,
 }
+
+export default memo(Spinner)
