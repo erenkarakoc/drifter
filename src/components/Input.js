@@ -66,6 +66,7 @@ class Input extends Component {
         transition: all 0.1s ease-out;
         z-index: 1;
       }
+
       &.has-value .icon-${icon} {
         fill: #666;
       }
@@ -82,22 +83,35 @@ class Input extends Component {
         pointer-events: none;
         user-select: none;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 16px;
         transform: translateY(-50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 20px;
+        height: 64px;
         padding: 0 3.5px;
         background-color: #fff;
-        color: var(--dt-purple);
+        color: var(--dt-link);
         font-family: "Montserrat", sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 500;
         text-align: center;
         z-index: 1;
-        transition: all 0.1s ease-out;
+        transition: all 0.08s ease-out;
+      }
+
+      ${theme === "large" ? "caret-color: transparent;" : ""}
+
+      &.has-focus {
+        ${theme === "large" ? "caret-color: transparent;" : ""}
+
+        .DTLargeInputLabel {
+          top: 0;
+          font-size: 14px;
+          color: var(--dt-purple);
+          height: 20px;
+        }
       }
     `
 
