@@ -42,9 +42,22 @@ class Input extends Component {
         &::placeholder {
           color: #999;
         }
-        &:focus {
-          border-color: var(--dt-purple);
-        }
+      }
+
+      &.success .native-input {
+        border-color: var(--dt-success);
+      }
+      &.error .native-input {
+        border-color: var(--dt-error);
+      }
+      &.warning .native-input {
+        border-color: var(--dt-warning);
+      }
+      &.info .native-input {
+        border-color: var(--dt-info);
+      }
+      .native-input:focus {
+        border-color: var(--dt-purple);
       }
 
       .icon-${icon} {

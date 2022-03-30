@@ -37,17 +37,16 @@ const EnterSMSCode = () => {
     })
   }, [])
 
-  const submitForm = () => {
-    router.push("/home", "forward")
-  }
-
   const handleChange = (e) => {
-    if (e.target.value.length === 6) submitForm()
-
     e.target.value = e.target.value
       .replace(/[^0-9.]/g, "")
       .replace(/(\..*)\./g, "$1")
+
+    setBorder("")
+    if (e.target.value === 6) handleSubmit(e)
   }
+
+  const pendingCode = "123456"
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -56,10 +55,17 @@ const EnterSMSCode = () => {
       .getElementById(SMSInputRef.current.props.id)
       .querySelector("input")
 
-    if (input.value.length === 6) {
-      submitForm()
-    } else {
-      setBorder("shake")
+    console.log(SMSInputRef)
+
+    if (input.value === pendingCode) {
+      router.push("/home", "forward")
+    } else if (input.value.length < 6) {
+      setBorder("shake error")
+      input.focus()
+
+      return
+    } else if (input.value !== pendingCode) {
+      setBorder("shake error")
       input.focus()
     }
   }

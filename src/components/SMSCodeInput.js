@@ -12,7 +12,7 @@ const SMSCodeInput = ({ border, handleChange, SMSInputRef, ...props }) => {
 
   return (
     <Input
-      id="SMSInput"
+      id="SMSCodeInput"
       label="Enter the 6-digit code"
       theme="large"
       cssClass={"EnterSixDigitInput " + border}
