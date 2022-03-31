@@ -91,8 +91,8 @@ const EnterSMSCode = () => {
       .getElementById(SMSInputRef.current.props.id)
       .querySelector("input")
 
-    if (input.value.length==6) {
-      activatePhone(phone,input.value);
+    if (input.value === pendingCode) {
+      router.push("/materials", "forward")
     } else if (input.value.length < 6) {
       setBorder("shake error")
       input.focus()
