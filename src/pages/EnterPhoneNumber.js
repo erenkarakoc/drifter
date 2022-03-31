@@ -18,6 +18,7 @@ import Logo from "./../components/Logo"
 import Text from "../components/Text"
 import DTPhoneInput from "../components/DTPhoneInput"
 import Button from "../components/Button"
+import Api from "./../helper/api";
 
 const EnterPhoneNumber = () => {
   const [border, setBorder] = useState("")
@@ -26,6 +27,26 @@ const EnterPhoneNumber = () => {
   const [present] = useIonAlert()
 
   let { phone } = useSelector((state) => state.userSlice)
+
+  const api = new Api();
+
+  const registerPhone = (phone) => {
+    api
+        .registerPhone({phone:phone})
+        .then((response) => {
+            if (response.data.success==true)
+            {
+                router.push("/enter-sms-code", "forward")
+            }else
+            {
+                present({
+                    cssClass:"surePhoneNumber",
+                    message: `Invalid number`
+                })
+            }
+        })
+        .catch((err) => console.log(err));
+  };
 
   return (
     <IonPage>
@@ -46,7 +67,7 @@ const EnterPhoneNumber = () => {
                     "No",
                     {
                       text: "Yes",
-                      handler: (d) => router.push("/enter-sms-code", "forward"),
+                      handler: (d) =>registerPhone(phone),
                     },
                   ],
                 })
