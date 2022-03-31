@@ -91,7 +91,6 @@ const EnterSMSCode = () => {
       .getElementById(SMSInputRef.current.props.id)
       .querySelector("input")
 
-
     if (input.value.length==6) {
       activatePhone(phone,input.value);
     } else if (input.value.length < 6) {
