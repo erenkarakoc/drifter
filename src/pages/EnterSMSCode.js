@@ -1,6 +1,6 @@
 // Ionic & React
 import { memo, useState, useEffect, useRef } from "react"
-import { IonPage, IonContent, useIonRouter } from "@ionic/react"
+import {IonPage, IonContent, useIonRouter, useIonAlert} from "@ionic/react"
 
 import "./Landing.css"
 
@@ -17,6 +17,7 @@ import Text from "../components/Text"
 import Button from "../components/Button"
 import SMSCodeInput from "../components/SMSCodeInput"
 import Spinner from "../components/Spinner"
+import Api from "./../helper/api";
 
 const EnterSMSCode = () => {
   const [border, setBorder] = useState("")
@@ -24,6 +25,7 @@ const EnterSMSCode = () => {
 
   const router = useIonRouter()
   const dispatch = useDispatch()
+  const [present] = useIonAlert()
 
   const { phone } = useSelector((state) => state.userSlice)
 
@@ -37,24 +39,65 @@ const EnterSMSCode = () => {
     })
   }, [])
 
-  const pendingCode = "123456"
+
+  const api = new Api();
+
+  const registerPhone = (phone) => {
+    api
+        .registerPhone({phone:phone})
+        .then((response) => {
+          if (response.data.success==true)
+          {
+            router.push("/enter-sms-code", "forward")
+          }else
+          {
+            present({
+              cssClass:"surePhoneNumber",
+              message: `Invalid number`
+            })
+          }
+        })
+        .catch((err) => console.log(err));
+  };
+
+  const activatePhone = (phone,code) => {
+    api
+          .activatePhone({"code":code,"phone":phone})
+        .then((response) => {
+
+          if (response.data.id>0)
+          {
+            router.push("/materials", "forward")
+          }else
+          {
+            present({
+              cssClass:"surePhoneNumber",
+              message: `Invalid Code`
+            })
+          }
+        })
+        .catch((err) => {
+          present({
+            cssClass:"surePhoneNumber",
+            message: `Invalid Code`
+          })
+        });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    console.log(e)
 
     const input = document
       .getElementById(SMSInputRef.current.props.id)
       .querySelector("input")
 
-    if (input.value === pendingCode) {
-      router.push("/materials", "forward")
+    if (input.value.length==6) {
+      activatePhone(phone,input.value);
     } else if (input.value.length < 6) {
       setBorder("shake error")
       input.focus()
       return
-    } else if (input.value !== pendingCode) {
+    } else if (input.value.length > 6) {
       setBorder("shake error")
       input.focus()
     }
@@ -110,7 +153,7 @@ const EnterSMSCode = () => {
             {isCountEnd ? (
               ""
             ) : (
-              <Button theme="link" margin="14px 0 0 auto">
+              <Button  theme="link" margin="14px 0 0 auto">
                 Resend code
               </Button>
             )}
@@ -121,6 +164,9 @@ const EnterSMSCode = () => {
                 color="var(--dt-purple)"
                 fontSize="18px"
                 fontWeight="500"
+                onClick={() => {
+                  registerPhone(phone)
+                }}
                 margin="50px auto 0"
               >
                 Resend code
