@@ -191,6 +191,10 @@ const DTPhoneInput = ({ border, setBorder, ...props }) => {
   useEffect(() => {
     setTimeout(() => {
       phoneInputRef.current.focus()
+
+      const asYouType = new AsYouType()
+      asYouType.input(phoneInputRef.current.value.toString())
+      dispatch(setCountry(asYouType.country))
     })
   }, [])
 

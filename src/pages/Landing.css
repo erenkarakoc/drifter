@@ -38,3 +38,68 @@
 .Landing .Logo {
   margin: 0 0 64px;
 }
+
+.surePhoneNumber {
+  text-align: center;
+}
+.surePhoneNumber .alert-message {
+  display: flex;
+  flex-direction: column;
+}
+.surePhoneNumber .alert-message span {
+  margin-top: 12px;
+}
+
+.EnterSixDigitInput {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.EnterSixDigitInput .native-input {
+  max-width: 100% !important;
+  width: 100% !important;
+  caret-color: #bdbcd4;
+  color: var(--dt-primary) !important;
+  font-size: 28px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+}
+
+.EditPhoneNumberForSMS {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-row-gap: 8px;
+  margin: 0 auto 44px 0;
+}
+.EditPhoneNumberForSMS::before {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  inset: -5px;
+  height: calc(100% + 10px);
+  width: calc(100% + 10px);
+  background-color: #fafafa;
+  border-radius: 4px;
+  transition: all 0.1s ease-out;
+  z-index: -1;
+}
+.EditPhoneNumberForSMS:active::before {
+  opacity: 1;
+}
+
+.ResendSMSCodeButton.count-ended {
+  position: relative;
+  margin: 0;
+  top: 40px;
+}
+.ResendSMSCodeButton.count-ended::part(native) {
+  color: var(--dt-purple) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.ResendSMSCodeButton.count-ended + .Spinner {
+  display: none;
+}

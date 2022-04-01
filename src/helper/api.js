@@ -1,38 +1,38 @@
-import * as axios from "axios";
+import * as axios from "axios"
 
 export default class Api {
-    constructor() {
-        this.api_token = null;
-        this.client = null;
-        this.api_url = "https://drifter.ocify.site/api/";
+  constructor() {
+    this.api_token = null
+    this.client = null
+    this.api_url = "https://drifter.ocify.site/api/"
+  }
+
+  init = () => {
+    this.api_token = "notset"
+
+    let headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     }
 
-    init = () => {
-        this.api_token = "notset";
+    if (this.api_token) {
+      headers.Authorization = `Bearer ${this.api_token}`
+    }
 
-        let headers = {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        };
+    this.client = axios.create({
+      baseURL: this.api_url,
+      timeout: 31000,
+      headers: headers,
+    })
 
-        if (this.api_token) {
-            headers.Authorization = `Bearer ${this.api_token}`;
-        }
+    return this.client
+  }
 
-        this.client = axios.create({
-            baseURL: this.api_url,
-            timeout: 31000,
-            headers: headers,
-        });
+  registerPhone = (data) => {
+    return this.init().post("register-phone", data)
+  }
 
-        return this.client;
-    };
-
-    registerPhone = (data) => {
-        return this.init().post("register-phone", data);
-    };
-
-    activatePhone = (data) => {
-        return this.init().post("activate-phone", data);
-    };
+  activatePhone = (data) => {
+    return this.init().post("activate-phone", data)
+  }
 }

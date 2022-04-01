@@ -23,7 +23,7 @@ export default class Button extends Component {
       color,
       fontSize,
       fontWeight,
-      className,
+      cssClass,
       ...buttonProps
     } = this.props
 
@@ -109,7 +109,7 @@ export default class Button extends Component {
       <DTButton
         className={`${
           theme ? " theme-button-" + theme : "theme-button-primary"
-        } ${className ? className : ""}`}
+        } ${cssClass ? cssClass : ""}`}
         {...buttonProps}
       >
         {icon && iconLeft ? (

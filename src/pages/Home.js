@@ -1,12 +1,5 @@
 // Ionic & React
-import {
-  IonBackButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-} from "@ionic/react"
+import { IonContent, IonPage } from "@ionic/react"
 
 // Components
 import Map from "../components/Map"

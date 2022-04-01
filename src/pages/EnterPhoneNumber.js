@@ -1,5 +1,5 @@
 // Ionic & React
-import { useState } from "react"
+import { memo, useState } from "react"
 import { IonPage, IonContent, useIonRouter, useIonAlert } from "@ionic/react"
 
 import "./Landing.css"
@@ -18,7 +18,7 @@ import Logo from "./../components/Logo"
 import Text from "../components/Text"
 import DTPhoneInput from "../components/DTPhoneInput"
 import Button from "../components/Button"
-import Api from "./../helper/api";
+import Api from "./../helper/api"
 
 const EnterPhoneNumber = () => {
   const [border, setBorder] = useState("")
@@ -28,25 +28,22 @@ const EnterPhoneNumber = () => {
 
   let { phone } = useSelector((state) => state.userSlice)
 
-  const api = new Api();
-
+  const api = new Api()
   const registerPhone = (phone) => {
     api
-        .registerPhone({phone:phone})
-        .then((response) => {
-            if (response.data.success==true)
-            {
-                router.push("/enter-sms-code", "forward")
-            }else
-            {
-                present({
-                    cssClass:"surePhoneNumber",
-                    message: `Invalid number`
-                })
-            }
-        })
-        .catch((err) => console.log(err));
-  };
+      .registerPhone({ phone: phone })
+      .then((response) => {
+        if (response.data.success == true) {
+          router.push("/enter-sms-code", "forward")
+        } else {
+          present({
+            cssClass: "surePhoneNumber",
+            message: `Invalid phone number`,
+          })
+        }
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <IonPage>
@@ -67,12 +64,13 @@ const EnterPhoneNumber = () => {
                     "No",
                     {
                       text: "Yes",
-                      handler: (d) =>registerPhone(phone),
+                      handler: (d) => registerPhone(phone),
                     },
                   ],
                 })
               } else {
-                setBorder("shake")
+                setBorder("")
+                setTimeout(() => setBorder("shake"))
               }
             }}
           >
@@ -94,4 +92,4 @@ const EnterPhoneNumber = () => {
   )
 }
 
-export default EnterPhoneNumber
+export default memo(EnterPhoneNumber)

@@ -9,54 +9,6 @@ body,
   display: none;
 }
 
-.surePhoneNumber {
-  text-align: center;
-}
-.surePhoneNumber .alert-message {
-  display: flex;
-  flex-direction: column;
-}
-.surePhoneNumber .alert-message span {
-  margin-top: 12px;
-}
-
-.EnterSixDigitInput {
-  max-width: 100% !important;
-  width: 100% !important;
-}
-.EnterSixDigitInput .native-input {
-  max-width: 100% !important;
-  width: 100% !important;
-  caret-color: #bdbcd4;
-  color: var(--dt-primary) !important;
-  font-size: 28px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-}
-
-.EditPhoneNumberForSMS {
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin: 0 auto 44px 0;
-}
-.EditPhoneNumberForSMS::before {
-  content: "";
-  position: absolute;
-  opacity: 0;
-  inset: -5px;
-  height: calc(100% + 10px);
-  width: calc(100% + 10px);
-  background-color: #fafafa;
-  border-radius: 4px;
-  transition: all 0.1s ease-out;
-  z-index: -1;
-}
-.EditPhoneNumberForSMS:active::before {
-  opacity: 1;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

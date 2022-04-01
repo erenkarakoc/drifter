@@ -110,8 +110,8 @@ const Materials = () => {
             <h1>Icons</h1>
 
             <div className="MaterialsIcons">
-              <Icon name="map-pin" fill="#b12083" size={35} />
-              <Icon name="map-and-pin" fill="#000" size={35} />
+              <Icon name="marker" fill="#b12083" size={35} />
+              <Icon name="map-and-marker" fill="#000" size={35} />
               <Icon name="view" fill="#000" size={35} />
               <Icon name="chademo" fill="#000" size={35} />
               <Icon name="type-2" fill="#000" size={35} />
@@ -173,22 +173,21 @@ const Materials = () => {
             <div className="MaterialsInputs">
               <Input placeholder="Input"></Input>
               <Input
-                className="ion-margin-top icon-left"
+                cssClass="ion-margin-top icon-left"
                 border="var(--dt-blue)"
                 placeholder="Input Secondary"
                 icon="google"
                 iconSize={22}
               ></Input>
               <Input
-                className="rounded ion-margin-top"
+                cssClass="rounded ion-margin-top"
                 placeholder="Input Rounded"
               ></Input>
               <Input
-                className="rounded ion-margin-top"
+                cssClass="rounded ion-margin-top"
                 placeholder="Input with Icon"
-                type="phone"
-                icon="phone"
-                iconSize={24}
+                icon="view"
+                iconSize={22}
               ></Input>
             </div>
           </div>

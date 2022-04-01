@@ -90,12 +90,11 @@ const CountryCodes = ({ currentCountry, handleClick }) => {
   const CountryCodesSkeleton = (props) => (
     <DTCountryCodeItem onClick={false} isSkeleton={true}>
       <ContentLoader
-        speed={0.4}
+        speed={1}
         height={30}
         viewBox="0 0 300 30"
         backgroundColor="#f6f6f3"
-        foregroundColor="#fff"
-        gradientRatio={2}
+        foregroundColor="#e3e3e3"
         preserveAspectRatio="none"
         style={{ maxWidth: "460px", width: "100%", marginRight: "auto" }}
         {...props}

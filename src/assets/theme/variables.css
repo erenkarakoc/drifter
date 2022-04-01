@@ -5,6 +5,9 @@
   --dt-page-padding: 22px;
   --dt-page-background: #fff;
 
+  /* Typography */
+  --dt-font-family: "Montserrat", sans-serif;
+
   /* Colors */
   --dt-border: #d1d0e3;
   --dt-border-light: #cdd4d9;

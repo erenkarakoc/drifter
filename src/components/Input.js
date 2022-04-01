@@ -14,21 +14,53 @@ class Input extends PureComponent {
       iconHeight,
       iconWidth,
       label,
+      labelMode,
       theme,
       cssClass,
       ...inputProps
     } = this.props
 
-    const DTInput = styled(IonInput)`
+    const DTInputWrapper = styled("div")`
+      position: relative;
       flex-shrink: 0;
-      flex-grow: 0;
+      ${theme === "large" ? "height: 66px;" : "height: 50px;"}
       max-width: 300px;
-      font-family: "Montserrat", sans-serif;
+
+      &.shake .native-input {
+        border-color: var(--dt-purple);
+      }
+      &.success .native-input {
+        border-color: var(--dt-success);
+      }
+      &.error .native-input {
+        border-color: var(--dt-error);
+      }
+      &.warning .native-input {
+        border-color: var(--dt-warning);
+      }
+      &.info .native-input {
+        border-color: var(--dt-info);
+      }
+
+      &.icon-left .native-input {
+        padding: 0 22px 0 50px;
+      }
+      &.icon-left .icon-${icon} {
+        left: 16px;
+        right: unset;
+      }
+    `
+
+    const DTInput = styled(IonInput)`
+      height: 100%;
+      width: 100%;
+      flex-shrink: 0;
+      font-family: var(--dt-font-family);
 
       .native-input {
         flex-shrink: 0;
         position: relative;
-        ${theme === "large" ? "height: 66px;" : "height: 50px;"}
+        height: 100%;
         width: 100%;
         padding: ${theme === "large" ? "0 20px" : "0 15px"};
         border: 1px solid var(--dt-border-light);
@@ -44,23 +76,12 @@ class Input extends PureComponent {
         }
       }
 
-      &.success .native-input {
-        border-color: var(--dt-success);
-      }
-      &.error .native-input {
-        border-color: var(--dt-error);
-      }
-      &.warning .native-input {
-        border-color: var(--dt-warning);
-      }
-      &.info .native-input {
-        border-color: var(--dt-info);
-      }
       .native-input:focus {
         border-color: var(--dt-purple);
       }
 
       .icon-${icon} {
+        pointer-events: none;
         position: absolute;
         right: 22px;
         transition: all 0.1s ease-out;
@@ -68,20 +89,15 @@ class Input extends PureComponent {
       }
 
       &.has-value .icon-${icon} {
-        fill: #666;
+        fill: var(--dt-link);
       }
-
-      &.icon-left .native-input {
-        padding: 0 22px 0 50px;
-      }
-      &.icon-left .icon-${icon} {
-        left: 16px;
-        right: unset;
+      &.has-value .native-input {
+        border-color: var(--dt-link);
       }
 
       .DTLargeInputLabel {
-        pointer-events: none;
         user-select: none;
+        pointer-events: none;
         position: absolute;
         top: 0;
         left: 16px;
@@ -103,7 +119,7 @@ class Input extends PureComponent {
 
       ${theme === "large" ? "caret-color: transparent;" : ""}
 
-      &:not(.has-focus):not(.has-value) {
+      &.label-mode-always:not(.has-focus):not(.has-value) {
         ${theme === "large" ? "caret-color: transparent;" : ""}
 
         .DTLargeInputLabel {
@@ -138,12 +154,12 @@ class Input extends PureComponent {
     const ID = guidGenerator()
 
     return (
-      <>
-        <DTInput
-          id={id ? id : ID}
-          className={cssClass ? cssClass : ""}
-          {...inputProps}
-        >
+      <DTInputWrapper
+        className={`label-mode-${labelMode ? labelMode : "always"} ${
+          cssClass ? cssClass : ""
+        }`}
+      >
+        <DTInput id={id ? id : ID} {...inputProps}>
           {icon ? (
             <Icon
               name={icon}
@@ -168,7 +184,7 @@ class Input extends PureComponent {
             ""
           )}
         </DTInput>
-      </>
+      </DTInputWrapper>
     )
   }
 }
